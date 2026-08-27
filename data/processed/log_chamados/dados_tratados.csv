@@ -1,0 +1,321 @@
+﻿chamado_id,data_abertura,canal,categoria,subcategoria,estado,cidade,duracao_minutos,resolvido_primeiro_contato,encaminhado_humano,satisfacao_1_a_5,plano_atual,resumo_atendimento,insatisfeito
+CHM-10004,2026-08-21,TELEFONE,COBERTURA,Sinal instável,RJ,Duque de Caxias,12.0,True,False,4.0,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,False
+CHM-10259,2026-08-10,APP,PORTABILIDADE,Dúvida sobre prazo de portabilidade,PR,Curitiba,9.0,True,False,4.0,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10252,,APP,OUTROS,Solicitação de fatura detalhada,BA,Feira de Santana,10.0,True,False,3.0,Conecta Plus,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10146,2026-08-12,APP,CANCELAMENTO,Cancelamento de linha,BA,Feira de Santana,34.0,True,False,3.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10020,2026-07-13,LOJA FISICA,OUTROS,Elogio,MG,Belo Horizonte,26.0,True,False,4.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10311,2026-08-16,APP,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,São Paulo,20.0,True,False,,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10295,2026-07-10,APP,FATURA,Segunda via,RJ,Rio de Janeiro,25.0,True,False,,Conecta Família,Cliente solicita segunda via da fatura por e-mail.,
+CHM-10166,2026-07-22,TELEFONE,TECNICO,Aparelho não conecta,RJ,Rio de Janeiro,16.0,True,False,4.0,Conecta Básico,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10068,2026-06-04,TELEFONE,TECNICO,Chip não funciona,MG,Uberlândia,22.0,True,False,5.0,Conecta Básico,Cliente relata chip novo sem funcionamento após ativação.,False
+CHM-10182,2026-06-02,LOJA FISICA,TECNICO,Falha na instalação,RJ,Duque de Caxias,8.0,False,True,3.0,Conecta Básico,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10253,2026-07-15,TELEFONE,TECNICO,Erro de configuração de APN,PE,Recife,,False,True,3.0,Conecta Família,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10145,2026-08-23,APP,TECNICO,Erro de configuração de APN,RJ,Rio de Janeiro,17.0,False,True,2.0,Conecta Família,Cliente pede ajuda para configurar APN manualmente.,True
+CHM-10118,2026-08-06,APP,FATURA,Contestação de valor,MG,Juiz de Fora,29.0,True,False,5.0,Conecta Básico,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10266,2026-07-20,TELEFONE,PORTABILIDADE,Portabilidade não concluída,RJ,Duque de Caxias,24.0,True,False,5.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10309,2026-06-05,LOJA FISICA,COBERTURA,Sem sinal,RJ,Duque de Caxias,35.0,False,True,1.0,Conecta Plus,Cliente relata ausência total de sinal na região.,True
+CHM-10155,2026-08-09,LOJA FISICA,FATURA,Contestação de valor,SP,Campinas,4.0,True,False,5.0,Conecta Básico,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10052,2026-07-02,TELEFONE,PLANO,Troca de plano,RS,Porto Alegre,16.0,True,False,3.0,Conecta Plus,Cliente solicita migração para outro plano da ConectaTel.,False
+CHM-10271,2026-06-29,LOJA FISICA,OUTROS,Dúvida geral,PE,Olinda,11.0,True,False,5.0,Conecta Plus,Cliente com dúvida geral sobre serviços da ConectaTel.,False
+CHM-10150,2026-08-23,APP,PORTABILIDADE,Dúvida sobre prazo de portabilidade,RJ,Duque de Caxias,12.0,False,True,1.0,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,True
+CHM-10040,2026-08-11,TELEFONE,TECNICO,Chip não funciona,BA,Feira de Santana,21.0,False,False,2.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,True
+CHM-10121,2026-06-25,CHAT,OUTROS,Solicitação de fatura detalhada,RS,Porto Alegre,22.0,True,False,5.0,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10282,2026-06-26,CHAT,TECNICO,Chip não funciona,PR,Curitiba,29.0,False,True,1.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,True
+CHM-10245,2026-07-12,APP,CANCELAMENTO,Cancelamento por insatisfação,BA,Feira de Santana,25.0,True,False,5.0,Conecta Plus,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10085,2026-07-20,APP,FATURA,Segunda via,PR,Curitiba,23.0,True,False,5.0,Conecta Plus,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10307,2026-07-17,TELEFONE,OUTROS,Elogio,SP,São Paulo,11.0,True,False,,Conecta Família,Cliente elogia atendimento recebido em contato anterior.,
+CHM-10195,2026-08-15,CHAT,COBERTURA,Lentidão na internet,PR,Curitiba,23.0,False,False,,Conecta Básico,Cliente relata velocidade abaixo do contratado.,
+CHM-10126,2026-08-07,APP,OUTROS,Solicitação de fatura detalhada,PR,Londrina,17.0,False,True,,Conecta Plus,Cliente pede detalhamento de consumo por linha na fatura.,
+CHM-10131,2026-07-10,APP,PLANO,Troca de plano,PE,Olinda,8.0,True,False,,Conecta Plus,Cliente solicita migração para outro plano da ConectaTel.,
+CHM-10141,2026-08-02,APP,TECNICO,Chip não funciona,RJ,Niterói,31.0,False,False,2.0,Conecta Básico,Cliente relata chip novo sem funcionamento após ativação.,True
+CHM-10016,2026-08-19,CHAT,CANCELAMENTO,Cancelamento de linha,MG,Belo Horizonte,17.0,False,True,1.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10156,2026-08-08,TELEFONE,FATURA,Segunda via,RS,Caxias do Sul,27.0,True,False,3.0,N/A,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10080,2026-06-25,LOJA FISICA,OUTROS,Sugestão,PE,Recife,10.0,True,False,5.0,Conecta Família,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10006,2026-08-14,LOJA FISICA,PLANO,Dúvida sobre franquia,RJ,Rio de Janeiro,11.0,True,False,5.0,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10058,2026-06-05,LOJA FISICA,FATURA,Valor divergente,MG,Uberlândia,25.0,False,True,1.0,Conecta Família,Cliente questiona diferença entre valor contratado e valor cobrado.,True
+CHM-10032,2026-07-01,CHAT,PLANO,Cancelamento de complemento,PR,Curitiba,12.0,True,False,3.0,Conecta Básico,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10076,2026-08-18,APP,TECNICO,Chip não funciona,SP,São Paulo,23.0,True,False,,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,
+CHM-10192,2026-08-21,CHAT,PLANO,Troca de plano,BA,Salvador,11.0,True,False,3.0,Conecta Básico,Cliente solicita migração para outro plano da ConectaTel.,False
+CHM-10283,2026-08-07,CHAT,FATURA,Dúvida sobre desconto,SP,Ribeirão Preto,4.0,True,False,5.0,Conecta Família,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10188,2026-06-28,LOJA FISICA,FATURA,Cobrança indevida,PR,Londrina,21.0,True,False,5.0,Conecta Plus,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10034,2026-08-21,LOJA FISICA,PLANO,Cancelamento de complemento,BA,Feira de Santana,31.0,True,False,5.0,Conecta Básico,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10102,2026-06-03,CHAT,CANCELAMENTO,Cancelamento por insatisfação,CE,Fortaleza,5.0,True,False,4.0,Conecta Básico,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10190,2026-08-13,APP,PORTABILIDADE,Portabilidade não concluída,PR,Londrina,12.0,True,False,,Conecta Básico,Cliente relata que a portabilidade não foi concluída no prazo informado.,
+CHM-10199,2026-06-27,LOJA FISICA,PLANO,Troca de plano,RJ,Duque de Caxias,33.0,True,False,5.0,N/A,Cliente solicita migração para outro plano da ConectaTel.,False
+CHM-10144,2026-07-06,APP,OUTROS,Solicitação de fatura detalhada,RJ,Rio de Janeiro,19.0,True,False,5.0,Conecta Básico,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10092,2026-06-09,APP,OUTROS,Elogio,PR,Curitiba,9.0,True,False,5.0,Conecta Plus,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10003,2026-06-06,CHAT,FATURA,Contestação de valor,PR,Curitiba,6.0,True,False,5.0,Conecta Básico,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10230,2026-08-24,APP,FATURA,Dúvida sobre desconto,CE,Fortaleza,12.0,True,False,,Conecta Plus,Cliente pergunta sobre desconto de fidelidade aplicado.,
+CHM-10191,2026-08-11,TELEFONE,COBERTURA,Sem sinal,PR,Londrina,28.0,True,False,5.0,Conecta Básico,Cliente relata ausência total de sinal na região.,False
+CHM-10319,,LOJA FISICA,PORTABILIDADE,Status de portabilidade,SP,Santos,11.0,True,False,3.0,Conecta Família,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10110,2026-07-22,TELEFONE,TECNICO,Erro de configuração de APN,SP,Ribeirão Preto,17.0,True,False,3.0,Conecta Básico,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10069,2026-06-11,LOJA FISICA,CANCELAMENTO,Cancelamento por insatisfação,BA,Salvador,24.0,True,False,,Conecta Plus,Cliente pede cancelamento citando insatisfação com o atendimento.,
+CHM-10082,2026-06-04,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,MG,Uberlândia,32.0,False,True,,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10129,2026-06-11,APP,FATURA,Dúvida sobre desconto,RJ,Duque de Caxias,27.0,True,False,5.0,Conecta Família,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10064,2026-08-04,CHAT,FATURA,Contestação de valor,RS,Caxias do Sul,16.0,True,False,3.0,Conecta Básico,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10074,2026-08-20,APP,FATURA,Segunda via,RJ,Niterói,30.0,True,False,5.0,N/A,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10165,2026-07-30,CHAT,PLANO,Adição de pacote de dados,RS,Porto Alegre,7.0,True,False,4.0,Conecta Básico,Cliente pede adição de pacote extra de internet móvel.,False
+CHM-10105,2026-07-15,APP,FATURA,Contestação de valor,PE,Olinda,11.0,False,False,2.0,Conecta Básico,Cliente contesta valor acima do esperado e pede revisão.,True
+CHM-10310,2026-08-09,APP,FATURA,Segunda via,SP,Ribeirão Preto,34.0,True,False,4.0,Conecta Plus,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10066,2026-07-25,CHAT,CANCELAMENTO,Cancelamento por insatisfação,RJ,Duque de Caxias,15.0,False,False,,Conecta Básico,Cliente pede cancelamento citando insatisfação com o atendimento.,
+CHM-10185,2026-07-22,CHAT,PLANO,Dúvida sobre franquia,RS,Caxias do Sul,5.0,True,False,4.0,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10001,2026-08-21,APP,PLANO,Dúvida sobre franquia,RJ,Niterói,4.0,True,False,3.0,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10248,2026-07-03,LOJA FISICA,COBERTURA,Sinal instável,BA,Feira de Santana,34.0,False,True,2.0,Conecta Família,Cliente relata quedas frequentes de sinal durante o dia.,True
+CHM-10193,2026-06-11,TELEFONE,PORTABILIDADE,Portabilidade não concluída,CE,Fortaleza,12.0,False,True,3.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10287,,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,RS,Caxias do Sul,31.0,True,False,5.0,Conecta Família,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10103,2026-06-15,LOJA FISICA,TECNICO,Falha na instalação,RS,Caxias do Sul,5.0,True,False,4.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10246,2026-08-13,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,PE,Recife,11.0,True,False,4.0,N/A,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10273,2026-06-25,CHAT,PLANO,Adição de pacote de dados,MG,Belo Horizonte,16.0,False,True,1.0,Conecta Família,Cliente pede adição de pacote extra de internet móvel.,True
+CHM-10171,,APP,CANCELAMENTO,Cancelamento de linha,CE,Sobral,13.0,True,False,4.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10175,2026-06-09,CHAT,FATURA,Cobrança indevida,CE,Sobral,12.0,True,False,5.0,Conecta Plus,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10244,2026-08-07,LOJA FISICA,FATURA,Contestação de valor,PE,Recife,31.0,True,False,5.0,Conecta Plus,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10163,2026-08-06,APP,PORTABILIDADE,Portabilidade não concluída,MG,Uberlândia,6.0,True,False,5.0,Conecta Família,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10232,2026-06-24,APP,PORTABILIDADE,Status de portabilidade,CE,Fortaleza,16.0,True,False,4.0,Conecta Plus,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10213,2026-07-27,APP,CANCELAMENTO,Cancelamento por mudança de operadora,RS,Caxias do Sul,13.0,False,True,2.0,Conecta Básico,Cliente informa que já solicitou portabilidade para outra operadora.,True
+CHM-10038,2026-08-07,CHAT,COBERTURA,Sinal instável,MG,Belo Horizonte,10.0,True,False,,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,
+CHM-10111,2026-06-16,TELEFONE,PORTABILIDADE,Status de portabilidade,RJ,Niterói,25.0,True,False,5.0,Conecta Plus,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10233,2026-08-18,CHAT,TECNICO,Falha na instalação,SP,Ribeirão Preto,25.0,True,False,3.0,Conecta Família,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10290,2026-07-06,LOJA FISICA,PLANO,Dúvida sobre franquia,RJ,Duque de Caxias,35.0,False,True,1.0,N/A,Cliente quer saber quantos GB restam na franquia do mês.,True
+CHM-10278,2026-08-18,TELEFONE,PLANO,Dúvida sobre franquia,BA,Feira de Santana,30.0,True,False,3.0,Conecta Família,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10127,2026-08-10,CHAT,PLANO,Troca de plano,PE,Olinda,8.0,True,False,,Conecta Básico,Cliente solicita migração para outro plano da ConectaTel.,
+CHM-10060,2026-07-29,TELEFONE,PORTABILIDADE,Status de portabilidade,SP,Campinas,10.0,False,True,2.0,Conecta Família,Cliente quer acompanhar o status da portabilidade em andamento.,True
+CHM-10218,2026-07-25,TELEFONE,OUTROS,Solicitação de fatura detalhada,MG,Uberlândia,23.0,True,False,4.0,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10249,2026-08-21,APP,PORTABILIDADE,Status de portabilidade,RJ,Rio de Janeiro,23.0,True,False,5.0,Conecta Família,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10137,2026-07-26,CHAT,PLANO,Dúvida sobre franquia,PR,Londrina,34.0,True,False,4.0,Conecta Básico,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10226,2026-08-15,APP,TECNICO,Aparelho não conecta,PR,Curitiba,17.0,True,False,4.0,Conecta Plus,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10247,2026-08-20,APP,COBERTURA,Lentidão na internet,PE,Recife,5.0,False,True,2.0,Conecta Plus,Cliente relata velocidade abaixo do contratado.,True
+CHM-10239,2026-06-26,CHAT,CANCELAMENTO,Cancelamento por insatisfação,PR,Curitiba,14.0,True,False,5.0,Conecta Básico,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10229,2026-07-16,APP,OUTROS,Solicitação de fatura detalhada,MG,Belo Horizonte,16.0,True,False,3.0,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10228,2026-06-06,APP,PORTABILIDADE,Status de portabilidade,BA,Salvador,26.0,True,False,4.0,Conecta Plus,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10224,2026-06-29,LOJA FISICA,OUTROS,Sugestão,PR,Londrina,30.0,True,False,4.0,Conecta Família,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10207,2026-07-18,CHAT,TECNICO,Falha na instalação,PE,Olinda,14.0,True,False,4.0,Conecta Família,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10081,2026-07-07,TELEFONE,TECNICO,Falha na instalação,RJ,Niterói,24.0,True,False,4.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10170,2026-08-14,TELEFONE,PLANO,Dúvida sobre franquia,SP,Ribeirão Preto,24.0,True,False,3.0,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10168,2026-07-06,TELEFONE,CANCELAMENTO,Cancelamento por mudança de operadora,BA,Feira de Santana,32.0,True,False,5.0,Conecta Família,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10101,2026-07-13,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,PR,Londrina,12.0,False,True,2.0,Conecta Plus,Cliente informa que já solicitou portabilidade para outra operadora.,True
+CHM-10018,2026-07-25,CHAT,COBERTURA,Sinal instável,MG,Uberlândia,29.0,False,True,2.0,Conecta Plus,Cliente relata quedas frequentes de sinal durante o dia.,True
+CHM-10048,2026-08-04,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,MG,Juiz de Fora,32.0,True,False,3.0,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10169,2026-07-19,APP,CANCELAMENTO,Cancelamento por insatisfação,PR,Londrina,13.0,True,False,5.0,Conecta Plus,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10289,2026-08-16,TELEFONE,PORTABILIDADE,Status de portabilidade,SP,Santos,22.0,True,False,4.0,Conecta Básico,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10263,2026-07-01,CHAT,CANCELAMENTO,Cancelamento por insatisfação,CE,Fortaleza,20.0,True,False,4.0,Conecta Básico,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10079,2026-08-19,TELEFONE,TECNICO,Aparelho não conecta,PR,Curitiba,30.0,False,True,3.0,Conecta Família,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10028,2026-06-30,TELEFONE,PLANO,Troca de plano,PE,Olinda,28.0,True,False,5.0,Conecta Básico,Cliente solicita migração para outro plano da ConectaTel.,False
+CHM-10133,2026-07-02,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,RJ,Niterói,2.0,True,False,3.0,N/A,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10056,2026-08-01,APP,OUTROS,Sugestão,CE,Fortaleza,16.0,False,True,,Conecta Plus,Cliente sugere melhoria no aplicativo da ConectaTel.,
+CHM-10007,2026-08-10,CHAT,PORTABILIDADE,Portabilidade não concluída,PR,Londrina,,False,False,1.0,Conecta Família,Cliente relata que a portabilidade não foi concluída no prazo informado.,True
+CHM-10227,2026-08-12,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,Ribeirão Preto,16.0,True,False,5.0,Conecta Família,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10075,2026-06-06,TELEFONE,CANCELAMENTO,Cancelamento por insatisfação,SP,São Paulo,23.0,True,False,5.0,Conecta Plus,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10135,,LOJA FISICA,PLANO,Cancelamento de complemento,RJ,Duque de Caxias,33.0,True,False,4.0,Conecta Plus,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10187,2026-08-23,CHAT,FATURA,Dúvida sobre desconto,MG,Belo Horizonte,16.0,True,False,5.0,Conecta Plus,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10269,2026-06-20,APP,PLANO,Dúvida sobre franquia,BA,Feira de Santana,15.0,False,True,2.0,Conecta Básico,Cliente quer saber quantos GB restam na franquia do mês.,True
+CHM-10049,2026-07-20,LOJA FISICA,COBERTURA,Área sem cobertura 4G/5G,PE,Recife,33.0,False,False,,Conecta Família,Cliente pergunta sobre previsão de cobertura 5G na região.,
+CHM-10223,2026-06-13,CHAT,COBERTURA,Área sem cobertura 4G/5G,PR,Londrina,11.0,True,False,,Conecta Básico,Cliente pergunta sobre previsão de cobertura 5G na região.,
+CHM-10147,2026-06-17,APP,OUTROS,Solicitação de fatura detalhada,MG,Juiz de Fora,19.0,True,False,5.0,Conecta Plus,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10202,2026-06-08,TELEFONE,TECNICO,Chip não funciona,CE,Sobral,24.0,False,True,,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,
+CHM-10296,2026-06-26,LOJA FISICA,FATURA,Dúvida sobre desconto,MG,Uberlândia,32.0,False,False,1.0,Conecta Plus,Cliente pergunta sobre desconto de fidelidade aplicado.,True
+CHM-10172,2026-08-18,TELEFONE,PORTABILIDADE,Portabilidade não concluída,SP,Campinas,11.0,False,True,2.0,Conecta Básico,Cliente relata que a portabilidade não foi concluída no prazo informado.,True
+CHM-10306,,APP,OUTROS,Sugestão,RS,Caxias do Sul,22.0,True,False,4.0,Conecta Plus,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10305,2026-07-20,LOJA FISICA,PLANO,Adição de pacote de dados,BA,Feira de Santana,7.0,True,False,,Conecta Família,Cliente pede adição de pacote extra de internet móvel.,
+CHM-10124,2026-06-08,CHAT,FATURA,Cobrança indevida,MG,Belo Horizonte,,True,False,3.0,Conecta Família,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10015,2026-07-02,CHAT,FATURA,Dúvida sobre desconto,PR,Curitiba,22.0,True,False,4.0,Conecta Básico,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10100,2026-07-28,APP,PORTABILIDADE,Status de portabilidade,MG,Uberlândia,25.0,False,True,1.0,Conecta Básico,Cliente quer acompanhar o status da portabilidade em andamento.,True
+CHM-10285,2026-06-26,CHAT,COBERTURA,Sinal instável,RJ,Duque de Caxias,30.0,False,True,,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,
+CHM-10042,2026-06-26,TELEFONE,PLANO,Adição de pacote de dados,RJ,Rio de Janeiro,21.0,False,True,2.0,Conecta Plus,Cliente pede adição de pacote extra de internet móvel.,True
+CHM-10115,2026-08-24,TELEFONE,OUTROS,Sugestão,MG,Uberlândia,35.0,False,False,1.0,Conecta Plus,Cliente sugere melhoria no aplicativo da ConectaTel.,True
+CHM-10087,2026-06-07,APP,FATURA,Segunda via,PE,Olinda,26.0,False,False,3.0,Conecta Básico,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10096,2026-08-21,APP,COBERTURA,Área sem cobertura 4G/5G,PE,Olinda,6.0,True,False,4.0,Conecta Básico,Cliente pergunta sobre previsão de cobertura 5G na região.,False
+CHM-10051,2026-07-01,APP,PORTABILIDADE,Portabilidade não concluída,RJ,Duque de Caxias,8.0,False,True,2.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,True
+CHM-10177,2026-06-22,LOJA FISICA,FATURA,Cobrança indevida,RS,Caxias do Sul,18.0,True,False,5.0,Conecta Básico,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10262,2026-07-12,APP,OUTROS,Elogio,MG,Uberlândia,18.0,False,True,2.0,Conecta Família,Cliente elogia atendimento recebido em contato anterior.,True
+CHM-10114,2026-08-14,LOJA FISICA,PORTABILIDADE,Portabilidade não concluída,RJ,Rio de Janeiro,20.0,False,True,3.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10293,2026-06-04,TELEFONE,OUTROS,Sugestão,CE,Fortaleza,32.0,False,True,1.0,Conecta Família,Cliente sugere melhoria no aplicativo da ConectaTel.,True
+CHM-10280,2026-07-09,APP,OUTROS,Elogio,MG,Belo Horizonte,19.0,True,False,3.0,Conecta Família,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10030,,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,RJ,Niterói,10.0,True,False,5.0,Conecta Família,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10132,2026-06-11,TELEFONE,CANCELAMENTO,Cancelamento de linha,MG,Uberlândia,21.0,True,False,4.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10214,2026-08-14,CHAT,TECNICO,Falha na instalação,MG,Juiz de Fora,5.0,False,True,,Conecta Família,Cliente relata problema durante instalação de internet fixa.,
+CHM-10272,2026-06-17,LOJA FISICA,PLANO,Cancelamento de complemento,RS,Porto Alegre,17.0,True,False,5.0,Conecta Plus,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10186,2026-07-01,LOJA FISICA,OUTROS,Solicitação de fatura detalhada,PR,Londrina,7.0,True,False,3.0,Conecta Básico,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10317,2026-08-24,LOJA FISICA,OUTROS,Solicitação de fatura detalhada,BA,Salvador,19.0,True,False,5.0,Conecta Básico,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10138,2026-06-19,APP,OUTROS,Elogio,PR,Curitiba,30.0,True,False,,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,
+CHM-10151,2026-06-10,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,São Paulo,29.0,True,False,,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10027,2026-06-21,LOJA FISICA,COBERTURA,Sinal instável,CE,Fortaleza,19.0,True,False,4.0,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,False
+CHM-10298,2026-06-27,TELEFONE,COBERTURA,Lentidão na internet,RJ,Rio de Janeiro,,True,False,5.0,Conecta Básico,Cliente relata velocidade abaixo do contratado.,False
+CHM-10117,2026-08-16,CHAT,PORTABILIDADE,Portabilidade não concluída,CE,Fortaleza,5.0,True,False,4.0,N/A,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10240,2026-07-08,CHAT,COBERTURA,Lentidão na internet,PE,Olinda,17.0,True,False,5.0,Conecta Básico,Cliente relata velocidade abaixo do contratado.,False
+CHM-10065,2026-06-20,LOJA FISICA,FATURA,Cobrança indevida,PE,Olinda,10.0,True,False,3.0,Conecta Família,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10112,2026-08-10,TELEFONE,PORTABILIDADE,Status de portabilidade,CE,Sobral,6.0,False,True,1.0,Conecta Plus,Cliente quer acompanhar o status da portabilidade em andamento.,True
+CHM-10220,2026-07-07,LOJA FISICA,TECNICO,Aparelho não conecta,MG,Belo Horizonte,10.0,False,False,2.0,N/A,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,True
+CHM-10205,2026-07-27,LOJA FISICA,OUTROS,Solicitação de fatura detalhada,PR,Londrina,3.0,True,False,5.0,Conecta Plus,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10094,2026-06-24,TELEFONE,CANCELAMENTO,Cancelamento de linha,MG,Belo Horizonte,12.0,True,False,3.0,N/A,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10160,2026-07-11,CHAT,COBERTURA,Sem sinal,MG,Juiz de Fora,4.0,True,False,5.0,Conecta Plus,Cliente relata ausência total de sinal na região.,False
+CHM-10243,2026-06-14,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,Santos,22.0,False,True,1.0,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,True
+CHM-10216,2026-08-11,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,RS,Porto Alegre,4.0,False,True,,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10210,2026-06-26,APP,COBERTURA,Sinal instável,PR,Curitiba,24.0,False,True,3.0,Conecta Família,Cliente relata quedas frequentes de sinal durante o dia.,False
+CHM-10183,2026-07-06,LOJA FISICA,TECNICO,Erro de configuração de APN,RS,Caxias do Sul,,False,True,1.0,N/A,Cliente pede ajuda para configurar APN manualmente.,True
+CHM-10201,2026-07-27,APP,FATURA,Segunda via,MG,Uberlândia,27.0,True,False,4.0,Conecta Básico,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10039,2026-07-07,LOJA FISICA,PLANO,Troca de plano,CE,Fortaleza,27.0,False,True,,Conecta Básico,Cliente solicita migração para outro plano da ConectaTel.,
+CHM-10292,2026-07-13,TELEFONE,PORTABILIDADE,Portabilidade não concluída,BA,Feira de Santana,21.0,True,False,5.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10257,2026-07-30,CHAT,FATURA,Valor divergente,BA,Salvador,32.0,True,False,,Conecta Família,Cliente questiona diferença entre valor contratado e valor cobrado.,
+CHM-10014,2026-08-09,APP,FATURA,Contestação de valor,MG,Juiz de Fora,7.0,True,False,,Conecta Família,Cliente contesta valor acima do esperado e pede revisão.,
+CHM-10237,2026-06-12,LOJA FISICA,TECNICO,Aparelho não conecta,BA,Feira de Santana,7.0,False,True,1.0,Conecta Básico,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,True
+CHM-10054,2026-08-24,CHAT,OUTROS,Dúvida geral,BA,Feira de Santana,16.0,True,False,3.0,Conecta Básico,Cliente com dúvida geral sobre serviços da ConectaTel.,False
+CHM-10180,2026-08-15,CHAT,OUTROS,Solicitação de fatura detalhada,RS,Caxias do Sul,7.0,True,False,5.0,Conecta Básico,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10119,2026-07-19,LOJA FISICA,OUTROS,Elogio,MG,Belo Horizonte,28.0,True,False,3.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10057,2026-07-29,APP,TECNICO,Erro de configuração de APN,RS,Porto Alegre,22.0,True,False,4.0,Conecta Básico,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10130,2026-07-26,LOJA FISICA,OUTROS,Sugestão,RJ,Niterói,11.0,True,False,4.0,Conecta Básico,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10139,2026-06-14,TELEFONE,PLANO,Dúvida sobre franquia,PR,Londrina,31.0,True,False,,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,
+CHM-10093,2026-08-10,CHAT,COBERTURA,Área sem cobertura 4G/5G,PE,Recife,10.0,True,False,5.0,Conecta Plus,Cliente pergunta sobre previsão de cobertura 5G na região.,False
+CHM-10159,2026-06-15,CHAT,OUTROS,Dúvida geral,SP,Santos,26.0,False,True,2.0,Conecta Plus,Cliente com dúvida geral sobre serviços da ConectaTel.,True
+CHM-10025,2026-06-29,TELEFONE,FATURA,Valor divergente,RJ,Niterói,14.0,True,False,4.0,Conecta Família,Cliente questiona diferença entre valor contratado e valor cobrado.,False
+CHM-10136,2026-08-16,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,SP,São Paulo,8.0,True,False,5.0,N/A,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10238,2026-06-23,LOJA FISICA,PLANO,Adição de pacote de dados,SP,Campinas,4.0,False,False,3.0,Conecta Plus,Cliente pede adição de pacote extra de internet móvel.,False
+CHM-10286,2026-07-13,TELEFONE,OUTROS,Elogio,SP,Santos,21.0,True,False,4.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10288,2026-06-27,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,MG,Juiz de Fora,21.0,True,False,5.0,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10143,2026-07-28,APP,TECNICO,Falha na instalação,PE,Olinda,28.0,False,True,2.0,Conecta Básico,Cliente relata problema durante instalação de internet fixa.,True
+CHM-10211,2026-08-06,LOJA FISICA,FATURA,Cobrança indevida,BA,Feira de Santana,18.0,False,False,3.0,Conecta Básico,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10108,2026-06-23,CHAT,OUTROS,Solicitação de fatura detalhada,BA,Salvador,21.0,False,True,2.0,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,True
+CHM-10090,2026-08-12,TELEFONE,TECNICO,Erro de configuração de APN,CE,Fortaleza,35.0,True,False,5.0,Conecta Plus,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10078,2026-06-24,APP,PLANO,Dúvida sobre franquia,MG,Uberlândia,8.0,False,True,2.0,Conecta Básico,Cliente quer saber quantos GB restam na franquia do mês.,True
+CHM-10161,2026-07-18,APP,CANCELAMENTO,Cancelamento de linha,PR,Londrina,14.0,False,True,,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,
+CHM-10209,2026-08-17,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,BA,Feira de Santana,20.0,True,False,5.0,Conecta Plus,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10189,2026-08-23,TELEFONE,OUTROS,Elogio,PE,Olinda,10.0,False,False,1.0,Conecta Plus,Cliente elogia atendimento recebido em contato anterior.,True
+CHM-10128,2026-07-06,CHAT,OUTROS,Sugestão,RS,Porto Alegre,27.0,True,False,3.0,Conecta Básico,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10314,2026-07-04,LOJA FISICA,COBERTURA,Área sem cobertura 4G/5G,PR,Curitiba,8.0,False,True,2.0,Conecta Família,Cliente pergunta sobre previsão de cobertura 5G na região.,True
+CHM-10047,2026-08-03,APP,PORTABILIDADE,Dúvida sobre prazo de portabilidade,CE,Fortaleza,31.0,False,False,3.0,Conecta Básico,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10153,2026-06-18,LOJA FISICA,TECNICO,Erro de configuração de APN,RS,Porto Alegre,17.0,True,False,5.0,Conecta Plus,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10300,2026-08-16,LOJA FISICA,COBERTURA,Lentidão na internet,RS,Porto Alegre,31.0,False,True,3.0,Conecta Plus,Cliente relata velocidade abaixo do contratado.,False
+CHM-10221,2026-06-02,TELEFONE,FATURA,Cobrança indevida,PE,Recife,21.0,False,True,2.0,Conecta Plus,Cliente relata cobrança de valor não reconhecido na fatura do mês.,True
+CHM-10258,2026-07-02,LOJA FISICA,PORTABILIDADE,Portabilidade não concluída,CE,Fortaleza,35.0,True,False,3.0,Conecta Básico,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10241,2026-08-21,TELEFONE,PORTABILIDADE,Portabilidade não concluída,PE,Recife,18.0,True,False,4.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10062,2026-06-15,LOJA FISICA,OUTROS,Sugestão,CE,Fortaleza,4.0,True,False,4.0,Conecta Básico,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10106,2026-08-08,APP,FATURA,Contestação de valor,RS,Porto Alegre,35.0,True,False,,Conecta Família,Cliente contesta valor acima do esperado e pede revisão.,
+CHM-10116,2026-07-19,TELEFONE,COBERTURA,Sinal instável,RS,Porto Alegre,4.0,False,True,,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,
+CHM-10134,2026-06-18,TELEFONE,COBERTURA,Sinal instável,PR,Londrina,17.0,False,True,1.0,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,True
+CHM-10070,2026-08-16,TELEFONE,PLANO,Dúvida sobre franquia,BA,Salvador,2.0,True,False,,Conecta Família,Cliente quer saber quantos GB restam na franquia do mês.,
+CHM-10164,2026-07-21,APP,TECNICO,Erro de configuração de APN,RJ,Rio de Janeiro,8.0,True,False,4.0,Conecta Plus,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10236,2026-07-21,CHAT,PLANO,Cancelamento de complemento,RJ,Duque de Caxias,27.0,True,False,3.0,Conecta Básico,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10053,2026-06-10,APP,COBERTURA,Área sem cobertura 4G/5G,CE,Fortaleza,26.0,True,False,5.0,Conecta Básico,Cliente pergunta sobre previsão de cobertura 5G na região.,False
+CHM-10260,2026-06-06,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,RJ,Rio de Janeiro,33.0,False,True,1.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10222,2026-07-03,TELEFONE,OUTROS,Dúvida geral,RJ,Duque de Caxias,6.0,True,False,,Conecta Plus,Cliente com dúvida geral sobre serviços da ConectaTel.,
+CHM-10122,2026-07-30,LOJA FISICA,PLANO,Adição de pacote de dados,PE,Recife,,True,False,5.0,Conecta Básico,Cliente pede adição de pacote extra de internet móvel.,False
+CHM-10198,2026-06-14,CHAT,FATURA,Cobrança indevida,RS,Porto Alegre,18.0,True,False,5.0,Conecta Plus,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10178,2026-06-12,LOJA FISICA,FATURA,Cobrança indevida,MG,Uberlândia,7.0,False,True,,Conecta Plus,Cliente relata cobrança de valor não reconhecido na fatura do mês.,
+CHM-10267,2026-07-14,LOJA FISICA,COBERTURA,Lentidão na internet,PE,Olinda,22.0,True,False,5.0,N/A,Cliente relata velocidade abaixo do contratado.,False
+CHM-10279,2026-06-18,TELEFONE,CANCELAMENTO,Cancelamento de linha,RJ,Duque de Caxias,9.0,True,False,5.0,N/A,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10276,2026-07-19,CHAT,TECNICO,Aparelho não conecta,RS,Caxias do Sul,3.0,True,False,4.0,Conecta Básico,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10167,2026-06-09,LOJA FISICA,FATURA,Segunda via,SP,São Paulo,12.0,False,True,2.0,Conecta Família,Cliente solicita segunda via da fatura por e-mail.,True
+CHM-10181,2026-06-22,TELEFONE,FATURA,Dúvida sobre desconto,PE,Recife,18.0,False,True,2.0,Conecta Plus,Cliente pergunta sobre desconto de fidelidade aplicado.,True
+CHM-10023,2026-08-19,CHAT,COBERTURA,Lentidão na internet,PR,Londrina,10.0,True,False,4.0,Conecta Básico,Cliente relata velocidade abaixo do contratado.,False
+CHM-10046,2026-06-17,LOJA FISICA,TECNICO,Aparelho não conecta,RS,Porto Alegre,21.0,True,False,3.0,Conecta Família,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10212,2026-08-11,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,SP,Ribeirão Preto,28.0,True,False,4.0,Conecta Plus,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10002,2026-06-29,APP,OUTROS,Elogio,PR,Curitiba,15.0,True,False,5.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10320,2026-06-09,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,PR,Londrina,27.0,True,False,,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10297,2026-06-17,CHAT,TECNICO,Aparelho não conecta,BA,Salvador,23.0,True,False,5.0,Conecta Plus,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10005,2026-06-05,LOJA FISICA,FATURA,Valor divergente,PR,Londrina,27.0,True,False,5.0,Conecta Básico,Cliente questiona diferença entre valor contratado e valor cobrado.,False
+CHM-10041,2026-06-21,CHAT,FATURA,Dúvida sobre desconto,CE,Fortaleza,16.0,False,True,1.0,Conecta Plus,Cliente pergunta sobre desconto de fidelidade aplicado.,True
+CHM-10302,2026-06-17,LOJA FISICA,OUTROS,Dúvida geral,RJ,Duque de Caxias,31.0,True,False,5.0,Conecta Básico,Cliente com dúvida geral sobre serviços da ConectaTel.,False
+CHM-10097,2026-07-11,APP,PLANO,Adição de pacote de dados,PR,Londrina,9.0,True,False,5.0,Conecta Básico,Cliente pede adição de pacote extra de internet móvel.,False
+CHM-10157,2026-07-01,CHAT,FATURA,Dúvida sobre desconto,SP,Campinas,,True,False,4.0,Conecta Família,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10162,2026-08-21,CHAT,FATURA,Dúvida sobre desconto,BA,Salvador,35.0,False,True,,Conecta Básico,Cliente pergunta sobre desconto de fidelidade aplicado.,
+CHM-10217,2026-07-18,LOJA FISICA,FATURA,Segunda via,RS,Porto Alegre,8.0,True,False,3.0,Conecta Família,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10203,2026-06-06,APP,PORTABILIDADE,Status de portabilidade,PR,Curitiba,29.0,True,False,5.0,Conecta Família,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10270,2026-08-13,CHAT,COBERTURA,Área sem cobertura 4G/5G,RJ,Duque de Caxias,2.0,True,False,4.0,Conecta Básico,Cliente pergunta sobre previsão de cobertura 5G na região.,False
+CHM-10035,2026-07-30,LOJA FISICA,FATURA,Dúvida sobre desconto,MG,Belo Horizonte,24.0,False,True,,Conecta Família,Cliente pergunta sobre desconto de fidelidade aplicado.,
+CHM-10011,2026-08-13,TELEFONE,OUTROS,Solicitação de fatura detalhada,RJ,Duque de Caxias,29.0,False,True,,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,
+CHM-10261,2026-06-30,APP,PORTABILIDADE,Portabilidade não concluída,PE,Recife,18.0,True,False,4.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10063,2026-08-01,LOJA FISICA,FATURA,Dúvida sobre desconto,CE,Fortaleza,22.0,True,False,5.0,Conecta Básico,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10043,2026-08-03,CHAT,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,Campinas,3.0,True,False,3.0,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10142,2026-07-10,APP,PLANO,Cancelamento de complemento,MG,Uberlândia,29.0,False,True,2.0,Conecta Básico,Cliente pede remoção de serviço adicional contratado.,True
+CHM-10095,2026-07-06,APP,CANCELAMENTO,Cancelamento de linha,MG,Juiz de Fora,23.0,False,True,1.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10179,2026-06-24,LOJA FISICA,PLANO,Cancelamento de complemento,BA,Feira de Santana,18.0,True,False,5.0,Conecta Plus,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10312,,CHAT,PLANO,Dúvida sobre franquia,PR,Londrina,17.0,False,False,2.0,Conecta Família,Cliente quer saber quantos GB restam na franquia do mês.,True
+CHM-10107,2026-06-01,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,RS,Caxias do Sul,20.0,True,False,4.0,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10194,2026-08-01,CHAT,PLANO,Adição de pacote de dados,PR,Curitiba,3.0,True,False,,Conecta Plus,Cliente pede adição de pacote extra de internet móvel.,
+CHM-10281,2026-06-18,LOJA FISICA,PORTABILIDADE,Dúvida sobre prazo de portabilidade,PE,Olinda,10.0,True,False,4.0,Conecta Família,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10071,2026-06-06,LOJA FISICA,OUTROS,Sugestão,PE,Olinda,,True,False,,Conecta Família,Cliente sugere melhoria no aplicativo da ConectaTel.,
+CHM-10254,2026-08-01,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,PR,Londrina,29.0,False,False,3.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10017,2026-08-24,TELEFONE,FATURA,Cobrança indevida,MG,Uberlândia,15.0,True,False,4.0,Conecta Básico,Cliente relata cobrança de valor não reconhecido na fatura do mês.,False
+CHM-10086,2026-06-18,LOJA FISICA,COBERTURA,Sinal instável,RS,Caxias do Sul,21.0,True,False,4.0,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,False
+CHM-10045,2026-08-10,CHAT,COBERTURA,Lentidão na internet,PE,Recife,31.0,True,False,4.0,Conecta Básico,Cliente relata velocidade abaixo do contratado.,False
+CHM-10152,2026-07-09,TELEFONE,PORTABILIDADE,Portabilidade não concluída,SP,Ribeirão Preto,24.0,True,False,4.0,Conecta Família,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
+CHM-10012,2026-06-14,TELEFONE,TECNICO,Falha na instalação,MG,Uberlândia,17.0,False,True,2.0,Conecta Básico,Cliente relata problema durante instalação de internet fixa.,True
+CHM-10196,2026-06-17,CHAT,CANCELAMENTO,Cancelamento de linha,PR,Curitiba,26.0,True,False,3.0,Conecta Família,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10264,2026-06-05,LOJA FISICA,FATURA,Cobrança indevida,PE,Olinda,35.0,True,False,,Conecta Família,Cliente relata cobrança de valor não reconhecido na fatura do mês.,
+CHM-10204,2026-08-18,TELEFONE,OUTROS,Solicitação de fatura detalhada,MG,Uberlândia,22.0,True,False,4.0,Conecta Básico,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10215,2026-08-07,TELEFONE,FATURA,Contestação de valor,PE,Olinda,7.0,True,False,5.0,Conecta Plus,Cliente contesta valor acima do esperado e pede revisão.,False
+CHM-10083,2026-06-20,LOJA FISICA,OUTROS,Sugestão,BA,Salvador,17.0,True,False,4.0,Conecta Plus,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10036,2026-08-02,TELEFONE,TECNICO,Chip não funciona,SP,Santos,16.0,True,False,5.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,False
+CHM-10140,2026-06-26,LOJA FISICA,FATURA,Valor divergente,BA,Salvador,8.0,True,False,,Conecta Plus,Cliente questiona diferença entre valor contratado e valor cobrado.,
+CHM-10148,2026-07-18,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,CE,Sobral,6.0,False,True,2.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10176,2026-06-29,CHAT,COBERTURA,Sem sinal,BA,Salvador,23.0,False,True,3.0,Conecta Família,Cliente relata ausência total de sinal na região.,False
+CHM-10313,2026-07-23,TELEFONE,TECNICO,Falha na instalação,PR,Londrina,9.0,True,False,3.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10031,2026-07-19,LOJA FISICA,OUTROS,Dúvida geral,SP,Santos,16.0,True,False,4.0,Conecta Plus,Cliente com dúvida geral sobre serviços da ConectaTel.,False
+CHM-10084,2026-08-13,TELEFONE,TECNICO,Aparelho não conecta,PR,Londrina,13.0,False,False,3.0,Conecta Básico,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10206,2026-08-05,LOJA FISICA,COBERTURA,Sem sinal,CE,Sobral,25.0,False,True,2.0,Conecta Plus,Cliente relata ausência total de sinal na região.,True
+CHM-10291,2026-07-16,LOJA FISICA,PORTABILIDADE,Status de portabilidade,CE,Fortaleza,,True,False,5.0,Conecta Plus,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10219,2026-07-23,LOJA FISICA,COBERTURA,Sem sinal,RJ,Rio de Janeiro,6.0,False,True,2.0,Conecta Plus,Cliente relata ausência total de sinal na região.,True
+CHM-10265,2026-08-23,CHAT,OUTROS,Dúvida geral,PE,Recife,19.0,False,False,,Conecta Básico,Cliente com dúvida geral sobre serviços da ConectaTel.,
+CHM-10113,2026-06-27,LOJA FISICA,CANCELAMENTO,Cancelamento por insatisfação,CE,Sobral,31.0,True,False,4.0,Conecta Família,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10255,2026-08-06,APP,PORTABILIDADE,Status de portabilidade,PE,Recife,13.0,True,False,5.0,Conecta Básico,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10059,2026-08-18,APP,PORTABILIDADE,Dúvida sobre prazo de portabilidade,CE,Fortaleza,25.0,True,False,4.0,N/A,Cliente pergunta quanto tempo leva o processo de portabilidade.,False
+CHM-10315,2026-07-03,LOJA FISICA,OUTROS,Elogio,PR,Curitiba,22.0,False,True,2.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,True
+CHM-10301,2026-06-29,APP,TECNICO,Falha na instalação,PR,Londrina,33.0,True,False,5.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10088,2026-08-17,TELEFONE,COBERTURA,Lentidão na internet,RJ,Duque de Caxias,20.0,True,False,3.0,Conecta Família,Cliente relata velocidade abaixo do contratado.,False
+CHM-10234,2026-08-13,TELEFONE,TECNICO,Falha na instalação,BA,Feira de Santana,18.0,False,True,2.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,True
+CHM-10050,2026-06-02,LOJA FISICA,PLANO,Troca de plano,BA,Feira de Santana,7.0,False,False,1.0,Conecta Plus,Cliente solicita migração para outro plano da ConectaTel.,True
+CHM-10299,2026-06-19,APP,PLANO,Dúvida sobre franquia,BA,Feira de Santana,,False,True,,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,
+CHM-10026,2026-06-29,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,CE,Sobral,35.0,False,True,1.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10089,2026-07-16,LOJA FISICA,PORTABILIDADE,Portabilidade não concluída,PE,Recife,3.0,False,True,2.0,Conecta Plus,Cliente relata que a portabilidade não foi concluída no prazo informado.,True
+CHM-10008,2026-07-09,TELEFONE,COBERTURA,Sinal instável,PR,Curitiba,9.0,False,True,1.0,Conecta Básico,Cliente relata quedas frequentes de sinal durante o dia.,True
+CHM-10067,2026-06-29,CHAT,PORTABILIDADE,Status de portabilidade,SP,Santos,21.0,True,False,,Conecta Família,Cliente quer acompanhar o status da portabilidade em andamento.,
+CHM-10125,2026-08-01,CHAT,CANCELAMENTO,Cancelamento por mudança de operadora,SP,Santos,,False,True,2.0,Conecta Básico,Cliente informa que já solicitou portabilidade para outra operadora.,True
+CHM-10024,2026-06-27,APP,TECNICO,Chip não funciona,RS,Caxias do Sul,12.0,True,False,4.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,False
+CHM-10242,2026-07-16,APP,PORTABILIDADE,Status de portabilidade,CE,Fortaleza,17.0,True,False,5.0,Conecta Básico,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10010,2026-07-02,APP,CANCELAMENTO,Cancelamento por mudança de operadora,RS,Porto Alegre,5.0,False,True,2.0,Conecta Plus,Cliente informa que já solicitou portabilidade para outra operadora.,True
+CHM-10303,2026-08-15,LOJA FISICA,OUTROS,Sugestão,MG,Juiz de Fora,6.0,False,True,1.0,Conecta Família,Cliente sugere melhoria no aplicativo da ConectaTel.,True
+CHM-10073,2026-07-01,APP,PLANO,Dúvida sobre franquia,MG,Uberlândia,31.0,True,False,4.0,Conecta Plus,Cliente quer saber quantos GB restam na franquia do mês.,False
+CHM-10294,2026-07-09,APP,CANCELAMENTO,Cancelamento de linha,PR,Curitiba,11.0,False,True,1.0,Conecta Família,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10037,2026-08-10,LOJA FISICA,COBERTURA,Lentidão na internet,RJ,Rio de Janeiro,22.0,False,True,1.0,N/A,Cliente relata velocidade abaixo do contratado.,True
+CHM-10120,2026-07-28,CHAT,PORTABILIDADE,Portabilidade não concluída,BA,Salvador,6.0,False,True,1.0,Conecta Básico,Cliente relata que a portabilidade não foi concluída no prazo informado.,True
+CHM-10077,2026-07-15,LOJA FISICA,CANCELAMENTO,Cancelamento por mudança de operadora,BA,Feira de Santana,23.0,False,True,1.0,Conecta Plus,Cliente informa que já solicitou portabilidade para outra operadora.,True
+CHM-10275,2026-07-03,APP,OUTROS,Sugestão,CE,Fortaleza,6.0,False,False,3.0,Conecta Básico,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10235,2026-06-14,APP,OUTROS,Solicitação de fatura detalhada,BA,Feira de Santana,15.0,True,False,5.0,Conecta Plus,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10268,2026-06-01,APP,FATURA,Contestação de valor,BA,Feira de Santana,16.0,False,False,,Conecta Plus,Cliente contesta valor acima do esperado e pede revisão.,
+CHM-10109,2026-07-30,CHAT,PLANO,Cancelamento de complemento,MG,Juiz de Fora,23.0,False,True,1.0,Conecta Básico,Cliente pede remoção de serviço adicional contratado.,True
+CHM-10061,,TELEFONE,CANCELAMENTO,Cancelamento por insatisfação,RJ,Rio de Janeiro,,True,False,,Conecta Plus,Cliente pede cancelamento citando insatisfação com o atendimento.,
+CHM-10208,2026-06-06,CHAT,TECNICO,Falha na instalação,SP,Ribeirão Preto,32.0,False,True,,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,
+CHM-10022,2026-07-15,APP,CANCELAMENTO,Cancelamento por mudança de operadora,PE,Recife,18.0,True,False,3.0,Conecta Família,Cliente informa que já solicitou portabilidade para outra operadora.,False
+CHM-10173,2026-06-18,LOJA FISICA,TECNICO,Erro de configuração de APN,PR,Curitiba,26.0,True,False,5.0,Conecta Básico,Cliente pede ajuda para configurar APN manualmente.,False
+CHM-10029,2026-07-20,LOJA FISICA,PORTABILIDADE,Status de portabilidade,CE,Sobral,29.0,True,False,4.0,N/A,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10174,2026-08-17,TELEFONE,CANCELAMENTO,Cancelamento de linha,MG,Juiz de Fora,6.0,True,False,5.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10308,2026-07-29,LOJA FISICA,PLANO,Cancelamento de complemento,CE,Sobral,16.0,True,False,5.0,Conecta Plus,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10009,2026-08-02,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,BA,Feira de Santana,15.0,False,True,1.0,Conecta Plus,Cliente pergunta quanto tempo leva o processo de portabilidade.,True
+CHM-10231,2026-08-13,TELEFONE,PLANO,Cancelamento de complemento,BA,Salvador,30.0,True,False,5.0,Conecta Família,Cliente pede remoção de serviço adicional contratado.,False
+CHM-10274,,CHAT,TECNICO,Chip não funciona,PR,Curitiba,15.0,True,False,3.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,False
+CHM-10256,2026-06-03,CHAT,FATURA,Segunda via,MG,Uberlândia,2.0,True,False,5.0,N/A,Cliente solicita segunda via da fatura por e-mail.,False
+CHM-10158,2026-07-05,CHAT,COBERTURA,Área sem cobertura 4G/5G,RJ,Duque de Caxias,6.0,True,False,4.0,Conecta Família,Cliente pergunta sobre previsão de cobertura 5G na região.,False
+CHM-10277,2026-07-16,APP,CANCELAMENTO,Cancelamento por insatisfação,BA,Salvador,19.0,True,False,5.0,N/A,Cliente pede cancelamento citando insatisfação com o atendimento.,False
+CHM-10033,2026-08-15,TELEFONE,PORTABILIDADE,Dúvida sobre prazo de portabilidade,SP,Ribeirão Preto,25.0,True,False,,N/A,Cliente pergunta quanto tempo leva o processo de portabilidade.,
+CHM-10316,2026-07-07,CHAT,CANCELAMENTO,Cancelamento de linha,RS,Porto Alegre,9.0,True,False,5.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10251,2026-07-31,CHAT,CANCELAMENTO,Cancelamento de linha,BA,Salvador,7.0,True,False,4.0,Conecta Básico,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10123,2026-08-12,LOJA FISICA,PORTABILIDADE,Status de portabilidade,BA,Feira de Santana,31.0,True,False,5.0,N/A,Cliente quer acompanhar o status da portabilidade em andamento.,False
+CHM-10304,2026-06-23,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,PR,Curitiba,7.0,True,False,5.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10013,2026-08-02,LOJA FISICA,PLANO,Cancelamento de complemento,PE,Olinda,20.0,False,True,1.0,Conecta Plus,Cliente pede remoção de serviço adicional contratado.,True
+CHM-10099,2026-08-03,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,PE,Olinda,25.0,True,False,4.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,False
+CHM-10019,2026-06-06,CHAT,PLANO,Dúvida sobre franquia,PR,Londrina,11.0,True,False,,Conecta Família,Cliente quer saber quantos GB restam na franquia do mês.,
+CHM-10072,2026-07-02,LOJA FISICA,FATURA,Dúvida sobre desconto,PR,Londrina,12.0,True,False,3.0,Conecta Família,Cliente pergunta sobre desconto de fidelidade aplicado.,False
+CHM-10318,2026-06-09,TELEFONE,TECNICO,Falha na instalação,CE,Fortaleza,29.0,False,True,,Conecta Família,Cliente relata problema durante instalação de internet fixa.,
+CHM-10225,2026-06-26,CHAT,FATURA,Cobrança indevida,SP,Campinas,4.0,False,True,2.0,Conecta Família,Cliente relata cobrança de valor não reconhecido na fatura do mês.,True
+CHM-10044,2026-07-06,LOJA FISICA,OUTROS,Solicitação de fatura detalhada,CE,Sobral,23.0,True,False,5.0,Conecta Família,Cliente pede detalhamento de consumo por linha na fatura.,False
+CHM-10250,2026-07-17,LOJA FISICA,PLANO,Dúvida sobre franquia,MG,Belo Horizonte,18.0,True,False,,Conecta Básico,Cliente quer saber quantos GB restam na franquia do mês.,
+CHM-10184,2026-06-30,LOJA FISICA,COBERTURA,Área sem cobertura 4G/5G,RS,Porto Alegre,28.0,False,True,,Conecta Família,Cliente pergunta sobre previsão de cobertura 5G na região.,
+CHM-10055,2026-07-27,APP,PLANO,Troca de plano,PR,Londrina,13.0,False,True,2.0,Conecta Família,Cliente solicita migração para outro plano da ConectaTel.,True
+CHM-10200,2026-07-08,CHAT,OUTROS,Elogio,BA,Feira de Santana,29.0,False,True,2.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,True
+CHM-10154,2026-07-21,CHAT,TECNICO,Chip não funciona,RS,Porto Alegre,,True,False,5.0,Conecta Plus,Cliente relata chip novo sem funcionamento após ativação.,False
+CHM-10098,2026-06-21,APP,OUTROS,Elogio,CE,Sobral,33.0,True,False,4.0,Conecta Básico,Cliente elogia atendimento recebido em contato anterior.,False
+CHM-10197,2026-06-07,LOJA FISICA,TECNICO,Aparelho não conecta,BA,Salvador,15.0,True,False,3.0,Conecta Básico,Cliente relata que o aparelho não conecta à rede após configurar novo chip.,False
+CHM-10021,2026-08-24,APP,OUTROS,Dúvida geral,PR,Londrina,23.0,False,True,,Conecta Plus,Cliente com dúvida geral sobre serviços da ConectaTel.,
+CHM-10284,2026-07-07,LOJA FISICA,CANCELAMENTO,Cancelamento de linha,CE,Sobral,7.0,False,True,2.0,Conecta Plus,Cliente solicita encerramento de uma linha do plano família.,True
+CHM-10091,2026-08-11,APP,TECNICO,Falha na instalação,BA,Feira de Santana,14.0,True,False,5.0,Conecta Plus,Cliente relata problema durante instalação de internet fixa.,False
+CHM-10104,2026-08-08,APP,OUTROS,Sugestão,RS,Caxias do Sul,21.0,True,False,5.0,Conecta Básico,Cliente sugere melhoria no aplicativo da ConectaTel.,False
+CHM-10149,2026-06-17,LOJA FISICA,PORTABILIDADE,Portabilidade não concluída,RJ,Niterói,3.0,True,False,3.0,Conecta Família,Cliente relata que a portabilidade não foi concluída no prazo informado.,False
