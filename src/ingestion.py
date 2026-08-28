@@ -1,11 +1,13 @@
-import argparse
 import datetime
 import json
 import logging
+import os
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
-import yaml
+from urllib.parse import urlparse
+
+import boto3
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("ingestion")
@@ -13,21 +15,46 @@ logger = logging.getLogger("ingestion")
 
 def parse_frontmatter(file_content: str) -> Tuple[Dict[str, Any], str]:
     """
-    Extracts YAML frontmatter metadata and content from markdown text.
-    Preserves all content after frontmatter, including Markdown headers.
+    Extracts simple frontmatter metadata and content from Markdown.
+    Does not require PyYAML.
     """
     pattern = r"^---\s*\n(.*?)\n---\s*\n"
     match = re.match(pattern, file_content, re.DOTALL)
-    if match:
-        yaml_text = match.group(1)
-        try:
-            metadata = yaml.safe_load(yaml_text) or {}
-        except Exception as e:
-            logger.warning(f"Error parsing YAML frontmatter: {e}")
-            metadata = {}
-        content = file_content[match.end():]
-        return metadata, content
-    return {}, file_content
+
+    if not match:
+        return {}, file_content
+
+    frontmatter_text = match.group(1)
+    metadata = {}
+
+    for line in frontmatter_text.splitlines():
+        line = line.strip()
+
+        if not line or ":" not in line:
+            continue
+
+        key, value = line.split(":", 1)
+
+        key = key.strip()
+        value = value.strip()
+
+        # Empty YAML value -> None
+        if value == "":
+            value = None
+
+        # Remove surrounding quotes
+        elif len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+            value = value[1:-1]
+
+        # Convert integer values
+        elif value.isdigit():
+            value = int(value)
+
+        metadata[key] = value
+
+    content = file_content[match.end():]
+
+    return metadata, content
 
 
 def _normalize_value(val: Any) -> Any:
@@ -37,27 +64,25 @@ def _normalize_value(val: Any) -> Any:
     return val
 
 
-def parse_document(file_path: Path, base_dir: Path, doc_id: int) -> Dict[str, Any]:
-    """
-    Reads a markdown document, extracts frontmatter, and formats the output record.
-    """
-    with open(file_path, "r", encoding="utf-8") as f:
-        file_content = f.read()
+def parse_document_content(
+    file_content: str,
+    source_name: str,
+    category: str,
+    doc_id: int
+) -> Dict[str, Any]:
 
     frontmatter, content = parse_frontmatter(file_content)
 
-    # Compute relative path and category
-    rel_path = file_path.relative_to(base_dir)
-    category = rel_path.parent.as_posix() if rel_path.parent != Path(".") else ""
+    normalized_meta = {
+        k: _normalize_value(v)
+        for k, v in frontmatter.items()
+    }
 
-    # Normalize frontmatter metadata
-    normalized_meta = {k: _normalize_value(v) for k, v in frontmatter.items()}
     normalized_meta["category"] = category
-    normalized_meta["doc_family_id"] = frontmatter.get("doc_family_id")
 
     record = {
         "id": doc_id,
-        "source": file_path.name,
+        "source": source_name,
         "metadata": normalized_meta,
         "content": content.strip()
     }
@@ -65,66 +90,174 @@ def parse_document(file_path: Path, base_dir: Path, doc_id: int) -> Dict[str, An
     return record
 
 
-def ingest_corpus(input_dir: str | Path, output_file: str | Path) -> List[Dict[str, Any]]:
+def parse_s3_uri(uri: str) -> Tuple[str, str]:
     """
-    Ingests all markdown documents in input_dir (excluding log_chamados)
-    and saves the extracted records into a JSONL output file.
+    Parses s3://bucket-name/key/path into (bucket, key).
     """
-    input_path = Path(input_dir)
-    output_path = Path(output_file)
+    parsed = urlparse(uri)
+    if parsed.scheme != "s3":
+        raise ValueError(f"Invalid S3 URI scheme: {uri}")
+    bucket = parsed.netloc
+    key = parsed.path.lstrip("/")
+    return bucket, key
 
-    if not input_path.exists():
-        raise FileNotFoundError(f"Input directory not found: {input_path}")
 
-    # Find all markdown files recursively
-    md_files = sorted(list(input_path.rglob("*.md")))
+def ingest_s3_corpus(
+    input_s3_uri: str,
+    output_s3_uri: str
+) -> List[Dict[str, Any]]:
+
+    s3_client = boto3.client("s3")
+
+    in_bucket, in_prefix = parse_s3_uri(input_s3_uri)
+    out_bucket, out_key = parse_s3_uri(output_s3_uri)
+
+    logger.info(f"Scanning bucket: {in_bucket}")
+    logger.info(f"Scanning prefix: {in_prefix}")
+
+    paginator = s3_client.get_paginator("list_objects_v2")
+    pages = paginator.paginate(
+        Bucket=in_bucket,
+        Prefix=in_prefix
+    )
+
     records = []
     current_id = 1
+    s3_keys = []
 
-    for file_path in md_files:
-        # Exclude log_chamados directory or files
-        if "log_chamados" in file_path.parts or "log_chamados" in file_path.name:
-            logger.info(f"Skipping excluded file/dir: {file_path}")
+    # Find Markdown files
+    for page in pages:
+        for obj in page.get("Contents", []):
+            key = obj["Key"]
+
+            logger.info(f"S3 object found: {key}")
+
+            if key.lower().endswith(".md"):
+                s3_keys.append(key)
+
+    logger.info(f"Markdown files found: {len(s3_keys)}")
+    logger.info(f"Markdown keys: {s3_keys}")
+
+    s3_keys.sort()
+
+    for key in s3_keys:
+
+        if Path(key).stem == "log_chamados":
+            logger.info(f"Skipping excluded S3 object: {key}")
             continue
 
         try:
-            record = parse_document(file_path, input_path, doc_id=current_id)
+            logger.info(f"Downloading: {key}")
+
+            response = s3_client.get_object(
+                Bucket=in_bucket,
+                Key=key
+            )
+
+            file_content = response["Body"].read().decode("utf-8")
+
+            logger.info(
+                f"Downloaded {key}: {len(file_content)} characters"
+            )
+
+            source_name = Path(key).name
+
+            if in_prefix and key.startswith(in_prefix):
+                rel_key = key[len(in_prefix):].lstrip("/")
+            else:
+                rel_key = key
+
+            parent = Path(rel_key).parent.as_posix()
+            category = parent if parent != "." else ""
+
+            record = parse_document_content(
+                file_content,
+                source_name,
+                category,
+                current_id
+            )
+
             records.append(record)
-            logger.info(f"Ingested document ID {record['id']}: {record['source']}")
+
+            logger.info(
+                f"Ingested document {record['id']}: {key}"
+            )
+
             current_id += 1
+
         except Exception as e:
-            logger.error(f"Error processing file {file_path}: {e}")
+            logger.exception(
+                f"Error processing S3 key {key}"
+            )
 
-    # Ensure output directory exists
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Total records generated: {len(records)}")
 
-    # Write records to JSONL
-    with open(output_path, "w", encoding="utf-8") as f:
-        for record in records:
-            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    jsonl_content = "\n".join(
+        json.dumps(r, ensure_ascii=False)
+        for r in records
+    )
 
-    logger.info(f"Successfully wrote {len(records)} document records to {output_path}")
+    if records:
+        jsonl_content += "\n"
+
+    logger.info(
+        f"Uploading {len(records)} records to "
+        f"s3://{out_bucket}/{out_key}"
+    )
+
+    s3_client.put_object(
+        Bucket=out_bucket,
+        Key=out_key,
+        Body=jsonl_content.encode("utf-8"),
+        ContentType="application/x-jsonlines"
+    )
+
+    logger.info(
+        f"Successfully uploaded JSONL output to "
+        f"s3://{out_bucket}/{out_key}"
+    )
+
     return records
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Ingest RAG corpus markdown data into JSONL format.")
-    parser.add_argument(
-        "--input-dir",
-        type=str,
-        default="data/raw/corpus",
-        help="Path to corpus directory containing raw markdown files."
-    )
-    parser.add_argument(
-        "--output-file",
-        type=str,
-        default="data/processed/corpus.jsonl",
-        help="Path to output JSONL file."
-    )
+def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
+    """
+    AWS Lambda Function Handler triggered by S3 ObjectCreated events or direct invocations.
+    """
+    logger.info(f"Received Lambda event: {json.dumps(event)}")
 
-    args = parser.parse_args()
-    ingest_corpus(args.input_dir, args.output_file)
+    raw_bucket = os.environ.get("RAW_BUCKET_NAME")
+    processed_bucket = os.environ.get("PROCESSED_BUCKET_NAME")
+    output_key = os.environ.get("OUTPUT_KEY", "corpus.jsonl")
+    input_prefix = os.environ.get("INPUT_PREFIX", "corpus/")
 
+    # If triggered by S3 event, override raw_bucket from event if available
+    if "Records" in event and len(event["Records"]) > 0:
+        s3_record = event["Records"][0].get("s3", {})
+        if "bucket" in s3_record and "name" in s3_record["bucket"]:
+            raw_bucket = s3_record["bucket"]["name"]
 
-if __name__ == "__main__":
-    main()
+    if not raw_bucket or not processed_bucket:
+        err_msg = "RAW_BUCKET_NAME and PROCESSED_BUCKET_NAME environment variables must be set."
+        logger.error(err_msg)
+        return {"statusCode": 400, "body": json.dumps({"error": err_msg})}
+
+    input_uri = f"s3://{raw_bucket}/{input_prefix.lstrip('/')}"
+    output_uri = f"s3://{processed_bucket}/{output_key.lstrip('/')}"
+
+    try:
+        records = ingest_s3_corpus(input_uri, output_uri)
+        return {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": f"Successfully ingested {len(records)} documents.",
+                "input_uri": input_uri,
+                "output_uri": output_uri
+            })
+        }
+    except Exception as e:
+        logger.exception("Error executing ingestion in Lambda handler")
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }
