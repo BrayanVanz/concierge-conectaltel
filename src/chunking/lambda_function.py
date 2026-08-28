@@ -12,6 +12,7 @@ from chunking.chunk_strategies import (
     chunk_hierarchical_semantic
 )
 from chunking.payload_formatter import format_strategy_payloads
+from chunking.s3_writer import write_chunks_to_s3
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("chunking_orchestrator")
@@ -25,12 +26,12 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     1. Lê documentos JSONL do S3 (Passo 1)
     2. Aplica 3 estratégias de chunking (Passo 2)
     3. Padroniza payloads de saída (Passo 3)
-    
-    Gera 3 listas separadas de payloads em memória (uma por estratégia).
+    4. Escreve chunks no S3 em formato JSONL (Passo 4)
     """
     logger.info(f"Evento recebido: {json.dumps(event)}")
     
     raw_bucket = os.environ.get("RAW_BUCKET_NAME")
+    processed_bucket = os.environ.get("PROCESSED_BUCKET_NAME")
     
     # Determina a chave do arquivo a ser processado
     file_key = None
@@ -47,6 +48,11 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     if not raw_bucket:
         err_msg = "RAW_BUCKET_NAME environment variable must be set."
+        logger.error(err_msg)
+        return {"statusCode": 400, "body": json.dumps({"error": err_msg})}
+    
+    if not processed_bucket:
+        err_msg = "PROCESSED_BUCKET_NAME environment variable must be set."
         logger.error(err_msg)
         return {"statusCode": 400, "body": json.dumps({"error": err_msg})}
     
@@ -91,7 +97,30 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         logger.info(f"  - full_document: {len(full_document_payloads)}")
         logger.info(f"  - hierarchical_semantic: {len(hierarchical_payloads)}")
         
-        # Retorna estatísticas (os payloads estão em memória para uso futuro)
+        # Passo 4: Escreve chunks no S3
+        logger.info("Passo 4: Escrevendo chunks no S3...")
+        
+        fixed_window_uri = write_chunks_to_s3(
+            fixed_window_payloads,
+            processed_bucket,
+            "chunks_fixed_window.jsonl"
+        )
+        
+        full_document_uri = write_chunks_to_s3(
+            full_document_payloads,
+            processed_bucket,
+            "chunks_full_document.jsonl"
+        )
+        
+        hierarchical_uri = write_chunks_to_s3(
+            hierarchical_payloads,
+            processed_bucket,
+            "chunks_hierarchical_semantic.jsonl"
+        )
+        
+        logger.info("Pipeline de chunking concluído com sucesso")
+        
+        # Retorna estatísticas dos arquivos criados
         return {
             "statusCode": 200,
             "body": json.dumps({
@@ -103,9 +132,17 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     "hierarchical_semantic": len(hierarchical_payloads)
                 },
                 "total_chunks": len(fixed_window_payloads) + len(full_document_payloads) + len(hierarchical_payloads),
+                "files_created": {
+                    "fixed_window": fixed_window_uri,
+                    "full_document": full_document_uri,
+                    "hierarchical_semantic": hierarchical_uri
+                },
                 "source": {
                     "bucket": raw_bucket,
                     "file_key": file_key
+                },
+                "destination": {
+                    "bucket": processed_bucket
                 }
             })
         }
