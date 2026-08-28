@@ -5,7 +5,6 @@ import logging
 import re
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
-
 import yaml
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -51,10 +50,10 @@ def parse_document(file_path: Path, base_dir: Path, doc_id: int) -> Dict[str, An
     rel_path = file_path.relative_to(base_dir)
     category = rel_path.parent.as_posix() if rel_path.parent != Path(".") else ""
 
-    # Normalize frontmatter metadata and remove doc_family_id
+    # Normalize frontmatter metadata
     normalized_meta = {k: _normalize_value(v) for k, v in frontmatter.items()}
-    normalized_meta.pop("doc_family_id", None)
     normalized_meta["category"] = category
+    normalized_meta["doc_family_id"] = frontmatter.get("doc_family_id")
 
     record = {
         "id": doc_id,
