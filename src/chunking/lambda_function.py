@@ -30,8 +30,10 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     """
     logger.info(f"Evento recebido: {json.dumps(event)}")
     
-    raw_bucket = os.environ.get("RAW_BUCKET_NAME")
-    processed_bucket = os.environ.get("PROCESSED_BUCKET_NAME")
+    input_bucket = os.environ.get("INPUT_BUCKET_NAME")
+    output_bucket = os.environ.get("OUTPUT_BUCKET_NAME")
+    input_prefix = os.environ.get("INPUT_PREFIX", "cleaned/")
+    output_prefix = os.environ.get("OUTPUT_PREFIX", "chunks/")
     
     # Determina a chave do arquivo a ser processado
     file_key = None
@@ -40,19 +42,19 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     if "Records" in event and len(event["Records"]) > 0:
         s3_record = event["Records"][0].get("s3", {})
         if "bucket" in s3_record and "object" in s3_record:
-            raw_bucket = s3_record["bucket"]["name"]
+            input_bucket = s3_record["bucket"]["name"]
             file_key = s3_record["object"]["key"]
     # Se disparado manualmente com chave explícita
     elif "file_key" in event:
         file_key = event["file_key"]
     
-    if not raw_bucket:
-        err_msg = "RAW_BUCKET_NAME environment variable must be set."
+    if not input_bucket:
+        err_msg = "INPUT_BUCKET_NAME environment variable must be set."
         logger.error(err_msg)
         return {"statusCode": 400, "body": json.dumps({"error": err_msg})}
     
-    if not processed_bucket:
-        err_msg = "PROCESSED_BUCKET_NAME environment variable must be set."
+    if not output_bucket:
+        err_msg = "OUTPUT_BUCKET_NAME environment variable must be set."
         logger.error(err_msg)
         return {"statusCode": 400, "body": json.dumps({"error": err_msg})}
     
@@ -64,7 +66,7 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     try:
         # Passo 1: Lê documentos do S3
         logger.info("Passo 1: Lendo documentos do S3...")
-        documents = read_jsonl_from_s3(raw_bucket, file_key)
+        documents = read_jsonl_from_s3(input_bucket, file_key)
         logger.info(f"Documentos carregados: {len(documents)}")
         
         # Passo 2: Aplica as 3 estratégias de chunking
@@ -102,20 +104,20 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         fixed_window_uri = write_chunks_to_s3(
             fixed_window_payloads,
-            processed_bucket,
-            "chunks_fixed_window.jsonl"
+            output_bucket,
+            f"{output_prefix}chunks_fixed_window.jsonl"
         )
         
         full_document_uri = write_chunks_to_s3(
             full_document_payloads,
-            processed_bucket,
-            "chunks_full_document.jsonl"
+            output_bucket,
+            f"{output_prefix}chunks_full_document.jsonl"
         )
         
         hierarchical_uri = write_chunks_to_s3(
             hierarchical_payloads,
-            processed_bucket,
-            "chunks_hierarchical_semantic.jsonl"
+            output_bucket,
+            f"{output_prefix}chunks_hierarchical_semantic.jsonl"
         )
         
         logger.info("Pipeline de chunking concluído com sucesso")
@@ -138,11 +140,12 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     "hierarchical_semantic": hierarchical_uri
                 },
                 "source": {
-                    "bucket": raw_bucket,
+                    "bucket": input_bucket,
                     "file_key": file_key
                 },
                 "destination": {
-                    "bucket": processed_bucket
+                    "bucket": output_bucket,
+                    "prefix": output_prefix
                 }
             })
         }

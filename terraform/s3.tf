@@ -64,15 +64,16 @@ resource "aws_s3_bucket_public_access_block" "processed_pab" {
   restrict_public_buckets = true
 }
 
-# S3 Event Notification to trigger Lambda on ObjectCreated in raw bucket
-resource "aws_s3_bucket_notification" "raw_bucket_notification" {
-  bucket = aws_s3_bucket.raw.id
+# S3 Event Notification to trigger Chunking Lambda on ObjectCreated in processed bucket
+resource "aws_s3_bucket_notification" "processed_bucket_notification" {
+  bucket = aws_s3_bucket.processed.id
 
   lambda_function {
-    lambda_function_arn = aws_lambda_function.ingestion.arn
+    lambda_function_arn = aws_lambda_function.chunking.arn
     events              = ["s3:ObjectCreated:*"]
-    filter_suffix       = ".md"
+    filter_prefix       = "cleaned/"
+    filter_suffix       = ".jsonl"
   }
 
-  depends_on = [aws_lambda_permission.allow_s3_raw]
+  depends_on = [aws_lambda_permission.allow_s3_processed]
 }

@@ -18,12 +18,12 @@ output "processed_bucket_arn" {
   description = "ARN of the processed JSONL S3 bucket"
 }
 
-output "lambda_function_name" {
-  value       = aws_lambda_function.ingestion.function_name
-  description = "Name of the ingestion Lambda function"
+output "chunking_lambda_name" {
+  value       = aws_lambda_function.chunking.function_name
+  description = "Name of the chunking Lambda function"
 }
 
-output "lambda_function_arn" {
-  value       = aws_lambda_function.ingestion.arn
-  description = "ARN of the ingestion Lambda function"
+output "chunking_lambda_arn" {
+  value       = aws_lambda_function.chunking.arn
+  description = "ARN of the chunking Lambda function"
 }
