@@ -1,7 +1,30 @@
 # Package source code into zip archive for Lambda deployment
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../src/chunking" 
+  source {
+    content  = file("${path.module}/../src/chunking/lambda_function.py")
+    filename = "lambda_function.py"
+  }
+  source {
+    content  = file("${path.module}/../src/chunking/__init__.py")
+    filename = "__init__.py"
+  }
+  source {
+    content  = file("${path.module}/../src/chunking/chunk_strategies.py")
+    filename = "chunk_strategies.py"
+  }
+  source {
+    content  = file("${path.module}/../src/chunking/payload_formatter.py")
+    filename = "payload_formatter.py"
+  }
+  source {
+    content  = file("${path.module}/../src/chunking/reader.py")
+    filename = "reader.py"
+  }
+  source {
+    content  = file("${path.module}/../src/chunking/s3_writer.py")
+    filename = "s3_writer.py"
+  }
   output_path = "${path.module}/lambda_function.zip"
 }
 

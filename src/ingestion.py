@@ -80,9 +80,23 @@ def parse_document_content(
 
     normalized_meta["category"] = category
 
+    # Extrair campos específicos para o nível superior do documento
+    doc_family_id = normalized_meta.pop("doc_family_id", f"doc_{doc_id}")
+    version_ordinal = normalized_meta.pop("version_ordinal", 1)
+    effective_from = normalized_meta.pop("effective_from", "")
+    effective_to = normalized_meta.pop("effective_to", "")
+    status = normalized_meta.pop("status", "vigente")
+    title = content.split('\n')[0].replace('#', '').strip() if content.strip().startswith('#') else source_name
+
     record = {
         "id": doc_id,
         "source": source_name,
+        "doc_family_id": doc_family_id,
+        "version_ordinal": version_ordinal,
+        "effective_from": effective_from,
+        "effective_to": effective_to,
+        "status": status,
+        "title": title,
         "metadata": normalized_meta,
         "content": content.strip()
     }
