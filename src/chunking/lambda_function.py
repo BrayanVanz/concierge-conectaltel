@@ -5,14 +5,14 @@ from typing import Any, Dict, List
 
 import boto3
 
-from chunking.reader import read_jsonl_from_s3
-from chunking.chunk_strategies import (
+from reader import read_jsonl_from_s3
+from chunk_strategies import (
     chunk_fixed_window,
     chunk_full_document,
     chunk_hierarchical_semantic
 )
-from chunking.payload_formatter import format_strategy_payloads
-from chunking.s3_writer import write_chunks_to_s3
+from payload_formatter import format_strategy_payloads
+from s3_writer import write_chunks_to_s3
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("chunking_orchestrator")

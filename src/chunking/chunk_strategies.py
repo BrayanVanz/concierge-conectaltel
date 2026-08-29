@@ -1,5 +1,8 @@
 import re
+import logging
 from typing import Any, Dict, List
+
+logger = logging.getLogger("chunk_strategies")
 
 
 def _generate_chunk_id(doc_family_id: str, version_ordinal: int, chunk_index: int) -> str:
@@ -7,8 +10,7 @@ def _generate_chunk_id(doc_family_id: str, version_ordinal: int, chunk_index: in
     Gera um ID único para o chunk baseado nos metadados do documento.
     """
     return f"{doc_family_id}_v{version_ordinal}_chunk{chunk_index}"
-
-
+ 
 def _inject_header(title: str, doc_family_id: str, version_ordinal: int, status: str) -> str:
     """
     Gera o cabeçalho padrão a ser injetado no topo de cada chunk.
@@ -32,6 +34,8 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
     for doc in documents:
         content = doc.get("content", "")
         chunk_index = 0
+        
+        logger.info(f"Processando documento: {doc.get('doc_family_id', 'unknown')} - Tamanho: {len(content)} caracteres")
         
         if len(content) <= chunk_size:
             # Conteúdo menor que o chunk size - chunk único
@@ -57,7 +61,12 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
         else:
             # Divide em múltiplos chunks com sobreposição
             start = 0
+            iteration_count = 0
             while start < len(content):
+                iteration_count += 1
+                if iteration_count % 100 == 0:
+                    logger.info(f"Progresso: {iteration_count} iterações, start={start}, len={len(content)}")
+                
                 end = min(start + chunk_size, len(content))
                 
                 chunk_id = _generate_chunk_id(
@@ -81,9 +90,13 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
                 
                 chunk_index += 1
                 start = end - overlap  # Aplica sobreposição
+                
+                # Proteção contra loop infinito
+                if start >= len(content) or (end == len(content) and start >= len(content) - overlap):
+                    break
     
+    logger.info(f"Total de chunks gerados: {len(chunks)}")
     return chunks
-
 
 def chunk_full_document(documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
