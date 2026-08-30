@@ -1,0 +1,165 @@
+{
+  "total_queries": 5,
+  "corpus_size": 55,
+  "elapsed_seconds": 2.174,
+  "retrieval_hit_rate_by_top_k": {
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0
+  },
+  "version_contamination_rate_by_top_k": {
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0
+  },
+  "recommended_top_k": 3,
+  "recommended_top_k_rationale": "Os três cortes testados (2, 3, 4) atingem 100% de acerto de recuperação neste corpus — todos são válidos. top_k=3 é adotado como margem protetiva: se os 2 primeiros chunks vierem próximos em similaridade ou com informações concorrentes, o terceiro dá à etapa de geração um voto de desempate. top_k=4 não melhora o acerto medido e tende a puxar mais chunks revogados para o contexto quando a busca não filtra por status.",
+  "notes": "retrieval_hit_rate = fração de consultas em que um chunk com status 'vigente' e doc_family_id da consulta aparece no top_k. version_contamination_rate = fração de consultas em que um chunk 'revogado' aparece no top_k quando a busca NÃO filtra por status; não conta contra a precisão — dimensiona a necessidade do filtro de vigência na camada de recuperação, antes do ranqueamento.",
+  "query_results": [
+    {
+      "query": "Quantos dias tenho para contestar um valor cobrado na minha fatura?",
+      "relevant_family": "pol-reembolso",
+      "first_relevant_vigente_rank": 2,
+      "top_5_ranked_chunk_ids": [
+        "pol-reembolso_v1_chunk0",
+        "pol-reembolso_v2_chunk0",
+        "pol-reembolso_v2_chunk3",
+        "pol-reembolso_v1_chunk2",
+        "pol-reembolso_v2_chunk2"
+      ],
+      "hit_by_top_k": {
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "revoked_chunk_ids_seen_by_top_k": {
+        "2": [
+          "pol-reembolso_v1_chunk0"
+        ],
+        "3": [
+          "pol-reembolso_v1_chunk0"
+        ],
+        "4": [
+          "pol-reembolso_v1_chunk0",
+          "pol-reembolso_v1_chunk2"
+        ]
+      }
+    },
+    {
+      "query": "Como funciona o reembolso se a minha contestação de fatura for aceita?",
+      "relevant_family": "pol-reembolso",
+      "first_relevant_vigente_rank": 2,
+      "top_5_ranked_chunk_ids": [
+        "pol-reembolso_v1_chunk1",
+        "pol-reembolso_v2_chunk1",
+        "pol-reembolso_v1_chunk0",
+        "pol-reembolso_v2_chunk3",
+        "pol-reembolso_v2_chunk0"
+      ],
+      "hit_by_top_k": {
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "revoked_chunk_ids_seen_by_top_k": {
+        "2": [
+          "pol-reembolso_v1_chunk1"
+        ],
+        "3": [
+          "pol-reembolso_v1_chunk1",
+          "pol-reembolso_v1_chunk0"
+        ],
+        "4": [
+          "pol-reembolso_v1_chunk1",
+          "pol-reembolso_v1_chunk0"
+        ]
+      }
+    },
+    {
+      "query": "A partir de qual valor a contestação de fatura passa por verificação antifraude?",
+      "relevant_family": "pol-reembolso",
+      "first_relevant_vigente_rank": 1,
+      "top_5_ranked_chunk_ids": [
+        "pol-reembolso_v2_chunk2",
+        "pol-reembolso_v1_chunk2",
+        "pol-reembolso_v2_chunk4",
+        "pol-reembolso_v2_chunk3",
+        "pol-reembolso_v1_chunk0"
+      ],
+      "hit_by_top_k": {
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "revoked_chunk_ids_seen_by_top_k": {
+        "2": [
+          "pol-reembolso_v1_chunk2"
+        ],
+        "3": [
+          "pol-reembolso_v1_chunk2"
+        ],
+        "4": [
+          "pol-reembolso_v1_chunk2"
+        ]
+      }
+    },
+    {
+      "query": "Em quantos dias úteis a equipe de faturamento analisa uma contestação?",
+      "relevant_family": "pol-reembolso",
+      "first_relevant_vigente_rank": 1,
+      "top_5_ranked_chunk_ids": [
+        "pol-reembolso_v2_chunk3",
+        "pol-reembolso_v1_chunk2",
+        "pol-reembolso_v1_chunk0",
+        "pol-reembolso_v2_chunk0",
+        "pol-reembolso_v2_chunk4"
+      ],
+      "hit_by_top_k": {
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "revoked_chunk_ids_seen_by_top_k": {
+        "2": [
+          "pol-reembolso_v1_chunk2"
+        ],
+        "3": [
+          "pol-reembolso_v1_chunk2",
+          "pol-reembolso_v1_chunk0"
+        ],
+        "4": [
+          "pol-reembolso_v1_chunk2",
+          "pol-reembolso_v1_chunk0"
+        ]
+      }
+    },
+    {
+      "query": "Posso receber o reembolso da minha fatura direto na minha conta corrente?",
+      "relevant_family": "pol-reembolso",
+      "first_relevant_vigente_rank": 2,
+      "top_5_ranked_chunk_ids": [
+        "pol-reembolso_v1_chunk1",
+        "pol-reembolso_v2_chunk1",
+        "faq-geral_v1_chunk5",
+        "pol-reembolso_v2_chunk4",
+        "pol-reembolso_v2_chunk2"
+      ],
+      "hit_by_top_k": {
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "revoked_chunk_ids_seen_by_top_k": {
+        "2": [
+          "pol-reembolso_v1_chunk1"
+        ],
+        "3": [
+          "pol-reembolso_v1_chunk1"
+        ],
+        "4": [
+          "pol-reembolso_v1_chunk1"
+        ]
+      }
+    }
+  ]
+}

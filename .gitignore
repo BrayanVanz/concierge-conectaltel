@@ -1,7 +1,20 @@
+# Segredos e configuração local — NUNCA versionar
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
 # Ignorar arquivos e provedores do Terraform
 **/.terraform/
 *.tfstate
 *.tfstate.*
+terraform/*.zip
 crash.log
 *.tfvars
 *.tfvars.json

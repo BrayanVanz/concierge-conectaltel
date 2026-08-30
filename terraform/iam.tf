@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda_exec" {
 # S3 & CloudWatch Logs permissions policy for Lambda
 resource "aws_iam_policy" "lambda_policy" {
   name        = "${var.project_prefix}-lambda-policy"
-  description = "IAM policy for ingestion Lambda to access S3 buckets and CloudWatch Logs"
+  description = "IAM policy for the project Lambdas: S3 (raw/processed/embeddings), Bedrock InvokeModel and CloudWatch Logs"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -46,6 +46,24 @@ resource "aws_iam_policy" "lambda_policy" {
           aws_s3_bucket.processed.arn,
           "${aws_s3_bucket.processed.arn}/*"
         ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.embeddings.arn,
+          "${aws_s3_bucket.embeddings.arn}/*"
+        ]
+      },
+      {
+        # Necessário para a Lambda de embeddings gerar os vetores.
+        Effect   = "Allow"
+        Action   = ["bedrock:InvokeModel"]
+        Resource = "arn:aws:bedrock:${var.aws_region}::foundation-model/cohere.embed-v4:0"
       },
       {
         Effect = "Allow"
