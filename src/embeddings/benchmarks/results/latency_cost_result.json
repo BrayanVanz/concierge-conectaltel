@@ -1,0 +1,18 @@
+{
+  "total_chunks": 55,
+  "total_batches": 1,
+  "batch_size": 96,
+  "total_estimated_tokens": 5655,
+  "token_estimation_method": "aproximação de 4 caracteres por token (não é contagem exata do tokenizer da Cohere)",
+  "latency": {
+    "total_elapsed_seconds": 1.988,
+    "mean_seconds_per_chunk": 0.0361,
+    "mean_batch_latency_seconds": 1.987,
+    "p50_batch_latency_seconds": 1.987,
+    "p95_batch_latency_seconds": 1.987
+  },
+  "cost": {
+    "estimated_cost_usd": 0.000679,
+    "price_source": "USD 0.12 por 1.000.000 de tokens de entrada (Cohere Embed v4, Amazon Bedrock, sob demanda, região us-east-1). Verificado em múltiplas fontes públicas em 2026-06/07. Confirme o valor vigente em https://aws.amazon.com/bedrock/pricing/ antes de decisões orçamentárias."
+  }
+}

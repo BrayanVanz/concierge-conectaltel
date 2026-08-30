@@ -27,3 +27,9 @@ variable "processed_bucket_name" {
   default     = ""
   description = "Custom name for processed JSONL S3 bucket. If empty, a unique name will be auto-generated."
 }
+
+variable "embeddings_bucket_name" {
+  type        = string
+  default     = ""
+  description = "Custom name for the embeddings S3 bucket (*_embedded.jsonl artifacts). If empty, a unique name will be auto-generated."
+}
