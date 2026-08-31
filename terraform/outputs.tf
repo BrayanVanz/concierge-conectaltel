@@ -47,3 +47,23 @@ output "embeddings_lambda_arn" {
   value       = aws_lambda_function.embeddings.arn
   description = "ARN of the embeddings Lambda function"
 }
+
+output "opensearch_collection_name" {
+  value       = var.enable_opensearch_vector_search ? aws_opensearchserverless_collection.vector[0].name : null
+  description = "Name of the OpenSearch Serverless vector collection (if enabled)."
+}
+
+output "opensearch_collection_id" {
+  value       = var.enable_opensearch_vector_search ? aws_opensearchserverless_collection.vector[0].id : null
+  description = "ID of the OpenSearch Serverless vector collection (if enabled)."
+}
+
+output "opensearch_collection_endpoint" {
+  value       = var.enable_opensearch_vector_search ? aws_opensearchserverless_collection.vector[0].collection_endpoint : null
+  description = "HTTPS endpoint for the OpenSearch Serverless vector collection (if enabled)."
+}
+
+output "opensearch_index_name" {
+  value       = var.opensearch_index_name
+  description = "Default vector index name used by the project for embedding search."
+}

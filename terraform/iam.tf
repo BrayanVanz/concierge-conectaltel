@@ -68,6 +68,23 @@ resource "aws_iam_policy" "lambda_policy" {
       {
         Effect = "Allow"
         Action = [
+          "aoss:CreateCollectionItems",
+          "aoss:DeleteCollectionItems",
+          "aoss:UpdateCollectionItems",
+          "aoss:DescribeCollectionItems",
+          "aoss:ReadDocument",
+          "aoss:WriteDocument",
+          "aoss:CreateIndex",
+          "aoss:DeleteIndex",
+          "aoss:UpdateIndex",
+          "aoss:DescribeIndex",
+          "aoss:ListIndexes"
+        ]
+        Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"

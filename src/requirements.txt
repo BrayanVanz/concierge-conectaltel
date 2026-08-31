@@ -2,3 +2,5 @@ pandas
 matplotlib
 boto3
 python-dotenv
+opensearch-py
+requests-aws4auth
