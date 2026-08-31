@@ -2,3 +2,4 @@ pandas
 matplotlib
 boto3
 python-dotenv
+numpy
