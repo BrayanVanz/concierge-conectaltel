@@ -2,8 +2,7 @@ locals {
   opensearch_collection_name = var.opensearch_collection_name != "" ? var.opensearch_collection_name : "${var.project_prefix}-vectors"
 }
 
-# Encryption policy must exist BEFORE the collection can finish creating,
-# otherwise the collection gets stuck forever in "CREATING" state.
+# Encryption policy must exist BEFORE the collection can finish creating
 resource "aws_opensearchserverless_security_policy" "encryption" {
   count = var.enable_opensearch_vector_search ? 1 : 0
 
@@ -21,8 +20,7 @@ resource "aws_opensearchserverless_security_policy" "encryption" {
   })
 }
 
-# Network policy also must be based on the collection NAME (not id), since
-# it must exist before/while the collection is being created.
+# Network policy
 resource "aws_opensearchserverless_security_policy" "network" {
   count = var.enable_opensearch_vector_search ? 1 : 0
 
@@ -53,6 +51,8 @@ resource "aws_opensearchserverless_collection" "vector" {
     aws_opensearchserverless_security_policy.network,
   ]
 }
+
+data "aws_caller_identity" "current" {}
 
 resource "aws_opensearchserverless_access_policy" "data" {
   count = var.enable_opensearch_vector_search ? 1 : 0
@@ -86,10 +86,14 @@ resource "aws_opensearchserverless_access_policy" "data" {
           ]
         }
       ]
-      Principal = concat(
-        [aws_iam_role.lambda_exec.arn],
+      # Inclui a Role da Lambda, os Principais Extras e o Caller Identity Local (AWS CLI/User)
+      Principal = distinct(concat(
+        [
+          aws_iam_role.lambda_exec.arn,
+          data.aws_caller_identity.current.arn
+        ],
         var.opensearch_extra_principals
-      )
+      ))
     }
   ])
 }

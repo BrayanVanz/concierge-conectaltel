@@ -1,164 +1,109 @@
-"""Helpers to persist generated embeddings in AWS OpenSearch Serverless."""
+"""Módulo de integração com OpenSearch Serverless para armazenamento e busca vetorial."""
 
 from __future__ import annotations
 
 import json
 import logging
-import os
-from typing import Any, Dict, Iterable, List, Sequence
+from typing import Any, Dict, List
 
 import boto3
-from opensearchpy import AWSV4SignerAuth, OpenSearch, RequestsHttpConnection
+from opensearchpy import OpenSearch, RequestsHttpConnection
+from requests_aws4auth import AWS4Auth
 
 logger = logging.getLogger("vector_store")
 
 
-class OpenSearchVectorStoreError(RuntimeError):
-    """Raised when a vector index operation fails."""
+class OpenSearchVectorStoreError(Exception):
+    """Exceção customizada para erros no OpenSearchVectorStore."""
+    pass
+
+
+def load_embedded_jsonl(file_path: str) -> List[Dict[str, Any]]:
+    """Carrega documentos e vetores de um arquivo *_embedded.jsonl."""
+    docs = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                docs.append(json.loads(line))
+    return docs
 
 
 class OpenSearchVectorStore:
-    """Thin wrapper around an AWS OpenSearch Serverless vector index."""
-
-    def __init__(
-        self,
-        endpoint: str | None = None,
-        region: str | None = None,
-        index_name: str | None = None,
-        vector_field: str = "embedding",
-        text_field: str = "text",
-    ) -> None:
-        self.endpoint = (endpoint or os.environ.get("OPENSEARCH_ENDPOINT") or os.environ.get("OPENSEARCH_COLLECTION_ENDPOINT") or "").rstrip("/")
-        self.region = region or os.environ.get("AWS_REGION", "us-east-1")
-        self.index_name = index_name or os.environ.get("OPENSEARCH_INDEX_NAME", "concierge-vectors")
-        self.vector_field = vector_field
-        self.text_field = text_field
-
-        if not self.endpoint:
-            raise OpenSearchVectorStoreError(
-                "Endpoint do OpenSearch não configurado. Defina OPENSEARCH_ENDPOINT/OPENSEARCH_COLLECTION_ENDPOINT."
-            )
+    def __init__(self, endpoint: str, region: str = "us-east-1", index_name: str = "concierge-vectors"):
+        self.endpoint = endpoint.replace("https://", "").rstrip("/")
+        self.region = region
+        self.index_name = index_name
 
         credentials = boto3.Session().get_credentials()
-        if credentials is None:
-            raise OpenSearchVectorStoreError(
-                "Credenciais AWS não encontradas para assinar a requisição ao OpenSearch." 
-            )
+        self.awsauth = AWS4Auth(
+            credentials.access_key,
+            credentials.secret_key,
+            self.region,
+            "aoss",
+            session_token=credentials.token,
+        )
 
         self.client = OpenSearch(
-            hosts=[{"host": self.endpoint.replace("https://", "").replace("http://", ""), "port": 443}],
-            http_auth=AWSV4SignerAuth(credentials, self.region, "aoss"),
+            hosts=[{"host": self.endpoint, "port": 443}],
+            http_auth=self.awsauth,
             use_ssl=True,
             verify_certs=True,
             connection_class=RequestsHttpConnection,
-            pool_maxsize=20,
+            timeout=60,             # Aumenta o timeout HTTP de 10s para 60s
+            max_retries=5,          # Realiza até 5 tentativas em caso de oscilação
+            retry_on_timeout=True
         )
 
-    def ensure_index(self, dimension: int) -> None:
-        """Create the index if it doesn't exist, using a knn_vector mapping."""
-        if self.client.indices.exists(index=self.index_name):
-            logger.info("Índice já existe | index=%s", self.index_name)
-            return
-
-        body = {
-            "settings": {"index": {"knn": True}},
-            "mappings": {
-                "properties": {
-                    self.vector_field: {
-                        "type": "knn_vector",
-                        "dimension": dimension,
-                        "method": {
-                            "name": "hnsw",
-                            "space_type": "cosinesimil",
-                            "engine": "nmslib",
+    def ensure_index(self, dimension: int = 1024) -> None:
+        """Cria o índice k-NN no OpenSearch se ele ainda não existir."""
+        try:
+            if not self.client.indices.exists(index=self.index_name):
+                index_body = {
+                "settings": {
+                    "index.knn": True
+                },
+                "mappings": {
+                    "properties": {
+                        "embedding": {
+                            "type": "knn_vector",
+                            "dimension": dimension,
+                            "method": {
+                                "name": "hnsw",
+                                "space_type": "cosinesimil",
+                                "engine": "nmslib",
+                                "parameters": {
+                                    "ef_construction": 128,
+                                    "m": 16
+                                }
+                            }
                         },
-                    },
-                    self.text_field: {"type": "text"},
-                    "chunk_id": {"type": "keyword"},
-                    "doc_id": {"type": "keyword"},
-                    "doc_family_id": {"type": "keyword"},
-                    "status": {"type": "keyword"},
-                    "effective_from": {"type": "date"},
-                    "effective_to": {"type": "date"},
-                    "source_file": {"type": "keyword"},
-                }
-            },
-        }
-
-        logger.info("Criando índice vetorial | index=%s | dimension=%s", self.index_name, dimension)
-        self.client.indices.create(index=self.index_name, body=body)
-
-    def bulk_index(self, documents: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
-        """Bulk index a list of docs, each of which must include an embedding vector."""
-        if not documents:
-            return {"items": []}
-
-        body: List[Dict[str, Any]] = []
-        for doc in documents:
-            payload = {
-                "chunk_id": doc.get("chunk_id"),
-                "doc_id": doc.get("doc_id"),
-                "doc_family_id": doc.get("doc_family_id"),
-                "status": doc.get("status", "active"),
-                "effective_from": doc.get("effective_from"),
-                "effective_to": doc.get("effective_to"),
-                "source_file": doc.get("source_file"),
-                self.text_field: doc.get(self.text_field) or doc.get("chunk_text") or doc.get("text") or "",
-                self.vector_field: doc.get(self.vector_field) or doc.get("embedding") or [],
-            }
-            # OpenSearch Serverless (vector search collections) does not allow
-            # specifying a custom "_id" on any bulk action (create/index) —
-            # "Document ID is not supported in create/index operation request".
-            # The document ID is auto-generated by OpenSearch; "chunk_id" is
-            # kept as a regular field so records can still be looked up/filtered.
-            body.append({"create": {"_index": self.index_name}})
-            body.append(payload)
-
-        result = self.client.bulk(body=body)
-        if result.get("errors"):
-            raise OpenSearchVectorStoreError(json.dumps(result, ensure_ascii=False))
-        return result
-
-    def search(self, query_vector: Sequence[float], k: int = 3, filter_terms: Dict[str, Any] | None = None) -> Dict[str, Any]:
-        """Search the nearest neighbors using a knn query."""
-        knn_query: Dict[str, Any] = {
-            "knn": {
-                self.vector_field: {
-                    "vector": list(query_vector),
-                    "k": k,
+                        "status": {"type": "keyword"},
+                        "doc_family_id": {"type": "keyword"},
+                        "content": {"type": "text"},
+                        "source": {"type": "keyword"}
+                    }
                 }
             }
-        }
+                self.client.indices.create(index=self.index_name, body=index_body)
+                logger.info("Índice criado com sucesso | index=%s | dimension=%d", self.index_name, dimension)
+        except Exception as e:
+            raise OpenSearchVectorStoreError(f"Erro ao criar/verificar o índice {self.index_name}: {e}")
 
-        if filter_terms:
-            knn_query["knn"][self.vector_field]["filter"] = [
-                {"term": {field: value}} for field, value in filter_terms.items()
-            ]
+    def bulk_index(self, docs: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Indexa uma lista de documentos no OpenSearch utilizando a API de Bulk."""
+        if not docs:
+            return {}
 
-        return self.client.search(index=self.index_name, body={"size": k, "query": knn_query})
+        bulk_data = []
+        for doc in docs:
+            bulk_data.append(json.dumps({"index": {"_index": self.index_name}}))
+            bulk_data.append(json.dumps(doc, ensure_ascii=False))
 
+        body = "\n".join(bulk_data) + "\n"
 
-def load_embedded_jsonl(path: str) -> List[Dict[str, Any]]:
-    """Read an embedded JSONL file and normalize the records for ingestion."""
-    docs: List[Dict[str, Any]] = []
-    with open(path, "r", encoding="utf-8") as handle:
-        for line in handle:
-            if not line.strip():
-                continue
-            record = json.loads(line)
-            if not record.get("embedding"):
-                continue
-            docs.append(
-                {
-                    "chunk_id": record.get("chunk_id"),
-                    "doc_id": record.get("doc_id"),
-                    "doc_family_id": record.get("doc_family_id"),
-                    "status": record.get("status", "active"),
-                    "effective_from": record.get("effective_from"),
-                    "effective_to": record.get("effective_to"),
-                    "source_file": os.path.basename(path),
-                    "text": record.get("chunk_text") or record.get("text") or "",
-                    "embedding": record["embedding"],
-                }
-            )
-    return docs
+        try:
+            response = self.client.bulk(body=body)
+            return response
+        except Exception as e:
+            raise OpenSearchVectorStoreError(f"Erro no envio em lote para o índice {self.index_name}: {e}")
