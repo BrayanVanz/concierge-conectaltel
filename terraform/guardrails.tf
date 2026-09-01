@@ -7,8 +7,8 @@ resource "aws_bedrock_guardrail" "concierge" {
   # Proteção contra Prompt Injection / Jailbreak
   content_policy_config {
     filters_config {
-      type           = "PROMPT_ATTACK"
-      input_strength = "HIGH"
+      type            = "PROMPT_ATTACK"
+      input_strength  = "HIGH"
       output_strength = "NONE"
     }
   }
@@ -26,19 +26,14 @@ resource "aws_bedrock_guardrail" "concierge" {
       type       = "DENY"
     }
 
-  topics_config {
+    topics_config {
       name       = "ForaDoEscopo"
       definition = "Assuntos gerais não relacionados a planos, faturas ou suporte da ConectaTel, como culinária, esportes, geografia, história, curiosidades, piadas, matemática e conhecimentos gerais."
       examples   = [
-        "Me dá uma receita de bolo de cenoura com cobertura de chocolate",
-        "Como fazer strogonoff de frango?",
-        "Qual é a capital da França e quem venceu a última Copa do Mundo?",
-        "Quem descobriu o Brasil?",
-        "Quem vai ganhar a eleição?",
-        "Como comprar bitcoin?",
+        "Me dá uma receita de bolo de cenoura?",
+        "Qual é a capital da França?",
         "Quem ganhou o jogo de futebol ontem?",
         "Quanto é 25 multiplicado por 14?",
-        "Me conte uma piada engraçada",
         "Qual é a previsão do tempo para amanhã?"
       ]
       type       = "DENY"

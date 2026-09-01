@@ -1,0 +1,65 @@
+[
+  {
+    "id": "q1",
+    "categoria": "regras_procedimentos_diretos",
+    "pergunta": "Como faço para verificar se a minha região tem cobertura 4G ou 5G pela ConectaTel?",
+    "resposta_esperada": "Você pode verificar a cobertura 4G/5G diretamente pelo aplicativo ConectaTel, acessando a seção 'Cobertura' e inserindo o CEP da região desejada.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q2",
+    "categoria": "regras_procedimentos_diretos",
+    "pergunta": "De que maneiras posso consultar o meu consumo de dados móveis?",
+    "resposta_esperada": "Você pode consultar o consumo de dados pela tela inicial do aplicativo ConectaTel ou enviando a palavra 'CONSUMO' por SMS para o número 1234 (serviço sem custo).",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q3",
+    "categoria": "regras_procedimentos_diretos",
+    "pergunta": "Qual é o procedimento para realizar o desbloqueio de um aparelho subsidiado comprado na ConectaTel?",
+    "resposta_esperada": "O procedimento consiste em: 1) Confirmar a identidade do titular da linha; 2) Verificar no sistema se o período de fidelidade foi concluído ou se há quitação antecipada disponível; 3) Se concluído, gerar o código de desbloqueio pelo aplicativo em até 1 dia útil sem custo; 4) Se houver antecipação, calcular o valor residual conforme a fórmula de multa proporcional; 5) Orientar o cliente sobre como inserir o código no aparelho.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q4",
+    "categoria": "excecoes_tabelas",
+    "pergunta": "Quais situações dispensam a cobrança de multa por quebra de fidelidade no cancelamento do plano?",
+    "resposta_esperada": "As situações que dispensam a multa de fidelidade são: comprovação de óbito do titular mediante certidão, comprovação de mudança para região sem cobertura ConectaTel, e defeito recorrente no serviço com histórico de pelo menos 3 chamados técnicos abertos para o mesmo problema em 60 dias sem solução.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q5",
+    "categoria": "excecoes_tabelas",
+    "pergunta": "Quais são os campos mínimos obrigatórios que um registro de escalonamento deve conter segundo a política de suporte?",
+    "resposta_esperada": "Segundo a tabela de campos mínimos da política de suporte e escalonamento, os campos obrigatórios são: protocolo_atendimento, data_hora_abertura, canal_origem, categoria_motivo, resumo_caso, historico_ja_levantado, produto_servico_envolvido, documento_fonte_consultado, urgencia e dados_contato_retorno.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q6",
+    "categoria": "excecoes_tabelas",
+    "pergunta": "Qual é a regra para contestações de valores de fatura que exigem verificação antifraude obrigatória?",
+    "resposta_esperada": "Contestações de valor igual ou superior a R$ 500,00 passam obrigatoriamente por verificação antifraude antes da liberação do reembolso, não devendo ser resolvidas apenas pelo atendimento automatizado.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q7",
+    "categoria": "versoes_antigas_vs_vigentes",
+    "pergunta": "Qual é o prazo limite atual para que um cliente conteste valores cobrados na fatura, em comparação com a regra antiga?",
+    "resposta_esperada": "Na versão vigente (versão 2), o cliente pode contestar valores cobrados na fatura em até 90 dias corridos contados a partir da data de vencimento. Na versão anterior (versão 1), o prazo era de no máximo 30 dias corridos e contestações após esse prazo não eram analisadas.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q8",
+    "categoria": "versoes_antigas_vs_vigentes",
+    "pergunta": "Quais são as formas de reembolso aceitas atualmente para contestações de faturas aceitas, e como isso mudou em relação à política anterior?",
+    "resposta_esperada": "Na política vigente (versão 2), quando a contestação é aceita, o cliente pode escolher entre crédito na fatura seguinte ou depósito em conta corrente de titularidade própria. Na versão anterior (versão 1), a devolução era feita exclusivamente como crédito na fatura seguinte, sem opção de depósito em conta.",
+    "metadado_esperado": "vigente"
+  },
+  {
+    "id": "q9",
+    "categoria": "versoes_antigas_vs_vigentes",
+    "pergunta": "Existe alguma exigência de verificação antifraude para contestações de faturas nas políticas de reembolso, e como essa regra evoluiu entre as versões?",
+    "resposta_esperada": "Na versão vigente (versão 2), contestações de valor igual ou superior a R$ 500,00 passam obrigatoriamente por verificação antifraude antes da liberação e a análise pode durar até 12 dias úteis no total. Na versão revogada (versão 1), não havia nenhuma etapa de verificação antifraude formal para contestações de qualquer valor.",
+    "metadado_esperado": "vigente"
+  }
+]
