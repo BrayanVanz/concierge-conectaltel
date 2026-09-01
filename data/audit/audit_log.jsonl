@@ -1,0 +1,3 @@
+{"trace_id": "cct-485b564b", "timestamp": "2026-09-01T06:00:14.393409+00:00", "user_id": null, "pergunta": "teste", "fontes": [], "score_max": null, "decisao": "ANSWERED", "guardrail_acionado": null, "resposta": "ok"}
+{"trace_id": "cct-dc8d14dd", "timestamp": "2026-09-01T06:00:21.659675+00:00", "user_id": null, "pergunta": "teste", "fontes": [], "score_max": null, "decisao": "ANSWERED", "guardrail_acionado": null, "resposta": "ok"}
+{"trace_id": "cct-654c7cf0", "timestamp": "2026-09-01T06:51:04.753078+00:00", "user_id": null, "pergunta": "teste", "fontes": [], "score_max": null, "decisao": "ANSWERED", "guardrail_acionado": null, "chunk_strategy": "hierarchical_semantic", "resposta": "ok"}
