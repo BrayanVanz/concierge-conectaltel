@@ -5,6 +5,8 @@ import boto3
 from opensearchpy import OpenSearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
+from src.audit.audit_log import log_trace
+
 class ConciergeAgent:
     def __init__(
         self, 
@@ -160,7 +162,16 @@ class ConciergeAgent:
                 "verificacoes_bot": conversation_history
             }
             resp = "Entendo a situação. Estou encaminhando seu caso para um atendente humano especializado."
-            return {"response": resp, "status": "ESCALATED", "handoff": handoff}
+            trace_id = log_trace(
+                pergunta=query,
+                user_id=user_id,
+                decisao="ESCALATED",
+                guardrail_acionado="regra_de_escalonamento",
+                chunk_strategy=self.chunk_strategy,
+                resposta=resp,
+                extra={"handoff": handoff},
+            )
+            return {"response": resp, "status": "ESCALATED", "handoff": handoff, "trace_id": trace_id}
 
         # 2. Guardrail de Entrada (Intercepta Prompt Injection e Fora de Escopo ANTES do RAG)
         if self.guardrail_id:
@@ -172,15 +183,33 @@ class ConciergeAgent:
                     content=[{"text": {"text": query}}]
                 )
                 if guard_res.get("action") == "GUARDRAIL_INTERVENED":
+                    trace_id = log_trace(
+                        pergunta=query,
+                        user_id=user_id,
+                        decisao="BLOCKED_GUARDRAIL",
+                        guardrail_acionado="bedrock_guardrail_input",
+                        chunk_strategy=self.chunk_strategy,
+                        resposta=guardrail_blocked_msg,
+                    )
                     return {
                         "response": guardrail_blocked_msg,
-                        "status": "BLOCKED_GUARDRAIL"
+                        "status": "BLOCKED_GUARDRAIL",
+                        "trace_id": trace_id,
                     }
             except Exception as e:
                 if "Guardrail" in str(e) or "intervened" in str(e).lower():
+                    trace_id = log_trace(
+                        pergunta=query,
+                        user_id=user_id,
+                        decisao="BLOCKED_GUARDRAIL",
+                        guardrail_acionado="bedrock_guardrail_input",
+                        chunk_strategy=self.chunk_strategy,
+                        resposta=guardrail_blocked_msg,
+                    )
                     return {
                         "response": guardrail_blocked_msg,
-                        "status": "BLOCKED_GUARDRAIL"
+                        "status": "BLOCKED_GUARDRAIL",
+                        "trace_id": trace_id,
                     }
 
         # 3. Busca RAG no OpenSearch
@@ -190,7 +219,16 @@ class ConciergeAgent:
         # 4. Validação do Limiar de Relevância (Para perguntas válidas mas sem dados na base)
         if max_score < self.score_threshold or not chunks:
             no_know_msg = "Não encontrei informações suficientes na documentação oficial da ConectaTel para responder à sua solicitação."
-            return {"response": no_know_msg, "status": "NO_KNOWLEDGE"}
+            trace_id = log_trace(
+                pergunta=query,
+                user_id=user_id,
+                decisao="NO_KNOWLEDGE",
+                score_max=max_score,
+                guardrail_acionado="limiar_de_score",
+                chunk_strategy=self.chunk_strategy,
+                resposta=no_know_msg,
+            )
+            return {"response": no_know_msg, "status": "NO_KNOWLEDGE", "trace_id": trace_id}
 
         # 5. Geração LLM via Bedrock com Guardrail de Saída
         context = "\n\n".join([f"Fonte [{c['source_ref']}]: {c['content']}" for c in chunks])
@@ -224,16 +262,38 @@ class ConciergeAgent:
             raw_answer = json.loads(res['body'].read())['content'][0]['text']
 
             if guardrail_action == "INTERVENED" or guardrail_blocked_msg.lower() in raw_answer.lower():
+                trace_id = log_trace(
+                    pergunta=query,
+                    user_id=user_id,
+                    decisao="BLOCKED_GUARDRAIL",
+                    score_max=max_score,
+                    fontes=[c['source_ref'] for c in chunks],
+                    guardrail_acionado="bedrock_guardrail_output",
+                    chunk_strategy=self.chunk_strategy,
+                    resposta=guardrail_blocked_msg,
+                )
                 return {
                     "response": guardrail_blocked_msg,
-                    "status": "BLOCKED_GUARDRAIL"
+                    "status": "BLOCKED_GUARDRAIL",
+                    "trace_id": trace_id,
                 }
 
         except Exception as e:
             if "Guardrail" in str(e) or "intervened" in str(e).lower():
+                trace_id = log_trace(
+                    pergunta=query,
+                    user_id=user_id,
+                    decisao="BLOCKED_GUARDRAIL",
+                    score_max=max_score,
+                    fontes=[c['source_ref'] for c in chunks],
+                    guardrail_acionado="bedrock_guardrail_output",
+                    chunk_strategy=self.chunk_strategy,
+                    resposta=guardrail_blocked_msg,
+                )
                 return {
                     "response": guardrail_blocked_msg,
-                    "status": "BLOCKED_GUARDRAIL"
+                    "status": "BLOCKED_GUARDRAIL",
+                    "trace_id": trace_id,
                 }
             raise e
 
@@ -241,4 +301,14 @@ class ConciergeAgent:
         sources = list(set([c['source_ref'] for c in chunks]))
         _, final_answer = self._apply_output_guardrails(raw_answer, sources)
 
-        return {"response": final_answer, "status": "ANSWERED", "sources": sources}
+        trace_id = log_trace(
+            pergunta=query,
+            user_id=user_id,
+            decisao="ANSWERED",
+            score_max=max_score,
+            fontes=sources,
+            chunk_strategy=self.chunk_strategy,
+            resposta=final_answer,
+        )
+
+        return {"response": final_answer, "status": "ANSWERED", "sources": sources, "trace_id": trace_id}
