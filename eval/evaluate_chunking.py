@@ -1,6 +1,5 @@
 """
-Script de avaliação do RAG via chamada direta ao agente (sem subprocess).
-Corrige o erro de Context Precision = 0 garantindo formatação correta dos contextos.
+Script de avaliação da Estratégias de Chunking
 """
 import os
 import sys
@@ -10,6 +9,7 @@ from typing import List, Dict, Any
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import ContextPrecision, Faithfulness
+from ragas.metrics._context_recall import context_recall
 from ragas.run_config import RunConfig
 from langchain_aws import ChatBedrock
 from ragas.llms import LangchainLLMWrapper
@@ -126,10 +126,6 @@ def evaluate_strategy(
     # Calcula Version Accuracy (métrica customizada)
     version_accuracy = calculate_version_accuracy(all_chunks)
     
-    # CORREÇÃO CRÍTICA: Garante formatação correta para Ragas
-    # Ragas espera que 'ground_truth' seja uma string, não uma lista
-    # O erro anterior ocorria porque o golden dataset tinha listas em alguns campos
-    
     # Prepara dataset para Ragas com formatação correta
     ragas_dataset = Dataset.from_dict({
         "question": questions,
@@ -147,12 +143,16 @@ def evaluate_strategy(
     # Configuração de execução opcional
     run_config = RunConfig(timeout=60, max_retries=3)
     
-    # Executa avaliação Ragas
-    print(f"\nCalculando métricas Ragas (Context Precision e Faithfulness)...")
+    # Executa avaliação Ragas com todas as métricas
+    print(f"\nCalculando métricas Ragas (Context Precision, Faithfulness, Context Recall)...")
     try:
         ragas_result = evaluate(
             ragas_dataset,
-            metrics=[ContextPrecision(), Faithfulness()],
+            metrics=[
+                ContextPrecision(), 
+                Faithfulness(),
+                context_recall,
+            ],
             llm=bedrock_llm,
             run_config=run_config
         )
@@ -164,19 +164,23 @@ def evaluate_strategy(
         if ragas_df is None or ragas_df.empty:
             raise ValueError("O DataFrame do Ragas está vazio ou é None.")
             
+        # Extrai scores das métricas
         context_precision_score = ragas_df['context_precision'].mean() if 'context_precision' in ragas_df else 0.0
         faithfulness_score = ragas_df['faithfulness'].mean() if 'faithfulness' in ragas_df else 0.0
+        context_recall_score = ragas_df['context_recall'].mean() if 'context_recall' in ragas_df else 0.0
         
     except Exception as e:
         print(f"Erro ao calcular métricas Ragas: {e}")
         context_precision_score = 0.0
         faithfulness_score = 0.0
+        context_recall_score = 0.0
         ragas_df = None
     
     print(f"\n{'='*60}")
     print(f"Resultados para {strategy_name}:")
     print(f"  Context Precision: {context_precision_score:.4f}")
     print(f"  Faithfulness: {faithfulness_score:.4f}")
+    print(f"  Context Recall: {context_recall_score:.4f}")
     print(f"  Version Accuracy: {version_accuracy:.4f}")
     print(f"{'='*60}")
     
@@ -184,6 +188,7 @@ def evaluate_strategy(
         "strategy": strategy_name,
         "context_precision": context_precision_score,
         "faithfulness": faithfulness_score,
+        "context_recall": context_recall_score,
         "version_accuracy": version_accuracy,
         "ragas_details": ragas_df
     }
@@ -199,8 +204,8 @@ def main():
     )
     
     strategies = ["fixed_windows", "full_document", "hierarchical_semantic"]
-    score_threshold = 0.3 # Limiar padrão do CLI
-    top_k = 5  # Número de chunks a recuperar
+    score_threshold = 0.68 # Limiar padrão do CLI
+    top_k = 3  # Número de chunks a recuperar
     
     # Carrega o golden dataset
     print(f"Carregando golden dataset de: {golden_dataset_path}")
@@ -234,6 +239,7 @@ def main():
                 "strategy": strategy,
                 "context_precision": 0.0,
                 "faithfulness": 0.0,
+                "context_recall": 0.0,
                 "version_accuracy": 0.0,
                 "error": str(e)
             })
@@ -254,6 +260,7 @@ def main():
             "Estratégia": r.get("strategy", "desconhecida"),
             "Context Precision": f"{r.get('context_precision', 0.0):.4f}",
             "Faithfulness": f"{r.get('faithfulness', 0.0):.4f}",
+            "Context Recall": f"{r.get('context_recall', 0.0):.4f}",
             "Version Accuracy": f"{r.get('version_accuracy', 0.0):.4f}"
         }
         for r in valid_results
