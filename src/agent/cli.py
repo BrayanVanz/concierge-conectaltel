@@ -68,8 +68,9 @@ def main():
 
             status = result.get("status", "UNKNOWN")
             response = result.get("response", "")
+            trace_id = result.get("trace_id", "N/A")
 
-            print(f"\n[Status: {status}]")
+            print(f"\n[Status: {status}] [trace_id: {trace_id}]")
             print(f"Concierge > {response}")
 
             if status == "ANSWERED" and result.get("sources"):
