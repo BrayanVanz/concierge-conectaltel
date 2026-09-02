@@ -12,36 +12,41 @@ logger = logging.getLogger("process_chunks_local")
 def transform_document_structure(doc: Dict[str, Any]) -> Dict[str, Any]:
     """
     Transforma a estrutura do documento do formato de ingestão para o formato esperado pelas estratégias de chunking.
-    
-    Move os campos do metadata para o nível superior e extrai o título do conteúdo.
-    
+
+    IMPORTANTE: o src/ingestion.py atual grava doc_family_id, version_ordinal,
+    effective_from, effective_to, status, title e source no NÍVEL RAIZ do
+    registro (não dentro de "metadata" — "metadata" só guarda campos extras
+    de frontmatter). Este transform agora lê primeiro do nível raiz e só cai
+    para "metadata" como fallback de compatibilidade com arquivos antigos.
+    Antes, ele lia só de "metadata" e descartava "source" por completo — por
+    isso as citações de fonte ficavam sempre com o valor genérico de fallback.
+
     Args:
-        doc: Documento no formato de ingestão (com campos aninhados em metadata)
-        
+        doc: Documento no formato de ingestão
+
     Returns:
-        Documento transformado com campos no nível superior
+        Documento transformado com campos no nível superior, incluindo "source"
     """
-    # Extrai campos do metadata
-    metadata = doc.get("metadata", {})
-    
+    metadata = doc.get("metadata", {}) or {}
+
     # Extrai título do conteúdo (primeira linha se começar com #)
     content = doc.get("content", "")
     if content.strip().startswith('#'):
         title = content.split('\n')[0].replace('#', '').strip()
     else:
-        title = doc.get("source", "")
-    
-    # Cria estrutura transformada
+        title = doc.get("title") or doc.get("source", "")
+
     transformed = {
-        "doc_family_id": metadata.get("doc_family_id", f"doc_{doc.get('id', 0)}"),
-        "version_ordinal": metadata.get("version_ordinal", 1),
-        "effective_from": metadata.get("effective_from", ""),
-        "effective_to": metadata.get("effective_to", ""),
-        "status": metadata.get("status", "vigente"),
+        "source": doc.get("source", ""),
+        "doc_family_id": doc.get("doc_family_id") or metadata.get("doc_family_id", f"doc_{doc.get('id', 0)}"),
+        "version_ordinal": doc.get("version_ordinal", metadata.get("version_ordinal", 1)),
+        "effective_from": doc.get("effective_from", metadata.get("effective_from", "")),
+        "effective_to": doc.get("effective_to", metadata.get("effective_to", "")),
+        "status": doc.get("status", metadata.get("status", "vigente")),
         "title": title,
         "content": content
     }
-    
+
     return transformed
 
 
