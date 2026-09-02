@@ -11,7 +11,7 @@ class ConciergeAgent:
     def __init__(
         self, 
         opensearch_endpoint: str = None,
-        chunk_strategy: str = "full_document", 
+        chunk_strategy: str = "hierarchical_semantic", 
         score_threshold: float = 0.30
     ):
         # Resolve o endpoint via argumento, env var ou leitura direta do Terraform
@@ -66,15 +66,6 @@ class ConciergeAgent:
         else:
             self.opensearch = None
 
-    def _apply_output_guardrails(self, response_text: str, sources: list) -> tuple[bool, str]:
-        """Validação de transparência de fontes no output."""
-        if not sources:
-            return True, response_text
-        has_citation = any(src.lower() in response_text.lower() for src in sources) or "fonte" in response_text.lower()
-        if not has_citation:
-            response_text += f"\n\n[Fonte consultada: {', '.join(sources)}]"
-        return True, response_text
-
     def _generate_query_embedding(self, query_text: str) -> list[float]:
         """Gera o embedding da pergunta usando o Cohere Embed v4 no Bedrock."""
         body = json.dumps({
@@ -97,14 +88,15 @@ class ConciergeAgent:
         """Mapeia a estratégia de chunking para o nome exato do índice no OpenSearch."""
         base_prefix = os.getenv("OPENSEARCH_INDEX_NAME", "concierge-vectors")
         strategy = self.chunk_strategy.replace("chunks_", "").strip()
-        
+
         mapping = {
-            "fixed_windows": f"{base_prefix}-default",
+            "fixed_window": f"{base_prefix}-fixed-windows",
+            "fixed_windows": f"{base_prefix}-fixed-windows",
             "default": f"{base_prefix}-default",
             "full_document": f"{base_prefix}-full-document",
             "hierarchical_semantic": f"{base_prefix}-hierarchical-semantic",
         }
-        
+
         return mapping.get(strategy, f"{base_prefix}-full-document")
 
     def retrieve_vigente_chunks(self, query: str, top_k: int = 3):
@@ -232,7 +224,11 @@ class ConciergeAgent:
 
         # 5. Geração LLM via Bedrock com Guardrail de Saída
         context = "\n\n".join([f"Fonte [{c['source_ref']}]: {c['content']}" for c in chunks])
-        prompt = f"Responda apenas com base no contexto abaixo. Se não souber, diga que não sabe. Cite as fontes.\n\nContexto:\n{context}\n\nPergunta: {query}"
+        prompt = (
+            "Responda apenas com base no contexto abaixo. Se não souber, diga que não sabe. "
+            "NUNCA inclua nomes de arquivo nem uma seção de 'Fontes' na sua resposta\n\n"
+            f"Contexto:\n{context}\n\nPergunta: {query}"
+        )
 
         body = json.dumps({
             "anthropic_version": "bedrock-2023-05-31",
@@ -299,7 +295,6 @@ class ConciergeAgent:
 
         # 6. Pós-processamento de Saída e Fontes
         sources = list(set([c['source_ref'] for c in chunks]))
-        _, final_answer = self._apply_output_guardrails(raw_answer, sources)
 
         trace_id = log_trace(
             pergunta=query,
@@ -308,7 +303,7 @@ class ConciergeAgent:
             score_max=max_score,
             fontes=sources,
             chunk_strategy=self.chunk_strategy,
-            resposta=final_answer,
+            resposta=raw_answer,
         )
 
-        return {"response": final_answer, "status": "ANSWERED", "sources": sources, "trace_id": trace_id}
+        return {"response": raw_answer, "status": "ANSWERED", "sources": sources, "trace_id": trace_id}

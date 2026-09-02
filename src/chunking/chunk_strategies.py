@@ -10,7 +10,18 @@ def _generate_chunk_id(doc_family_id: str, version_ordinal: int, chunk_index: in
     Gera um ID único para o chunk baseado nos metadados do documento.
     """
     return f"{doc_family_id}_v{version_ordinal}_chunk{chunk_index}"
- 
+
+
+def _resolve_source(doc: Dict[str, Any]) -> str:
+    """
+    Resolve o campo 'source' (nome do arquivo de origem) de forma tolerante:
+    usa doc['source'] quando disponível (formato atual do ingestion.py) e,
+    na ausência dele, cai para o título ou para o doc_family_id — nunca deixa
+    o chunk sem nenhuma referência rastreável ao documento de origem.
+    """
+    return doc.get("source") or doc.get("title") or doc.get("doc_family_id", "desconhecido")
+
+
 def _inject_header(title: str, doc_family_id: str, version_ordinal: int, status: str) -> str:
     """
     Gera o cabeçalho padrão a ser injetado no topo de cada chunk.
@@ -34,6 +45,7 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
     for doc in documents:
         content = doc.get("content", "")
         chunk_index = 0
+        source = _resolve_source(doc)
         
         logger.info(f"Processando documento: {doc.get('doc_family_id', 'unknown')} - Tamanho: {len(content)} caracteres")
         
@@ -54,7 +66,8 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
                     "effective_from": doc["effective_from"],
                     "effective_to": doc["effective_to"],
                     "status": doc["status"],
-                    "title": doc["title"]
+                    "title": doc["title"],
+                    "source": source
                 }
             })
             chunk_index += 1
@@ -84,7 +97,8 @@ def chunk_fixed_window(documents: List[Dict[str, Any]], chunk_size: int = 500, o
                         "effective_from": doc["effective_from"],
                         "effective_to": doc["effective_to"],
                         "status": doc["status"],
-                        "title": doc["title"]
+                        "title": doc["title"],
+                        "source": source
                     }
                 })
                 
@@ -126,7 +140,8 @@ def chunk_full_document(documents: List[Dict[str, Any]]) -> List[Dict[str, Any]]
                 "effective_from": doc["effective_from"],
                 "effective_to": doc["effective_to"],
                 "status": doc["status"],
-                "title": doc["title"]
+                "title": doc["title"],
+                "source": _resolve_source(doc)
             }
         })
     
@@ -185,6 +200,7 @@ def _chunk_faq_content(content: str, header: str, doc: Dict[str, Any], start_chu
     """
     chunks = []
     chunk_index = start_chunk_index
+    source = _resolve_source(doc)
     
     # Padrão para identificar perguntas em negrito
     question_pattern = r'\*\*[^*]+\*\*'
@@ -206,7 +222,8 @@ def _chunk_faq_content(content: str, header: str, doc: Dict[str, Any], start_chu
                 "effective_from": doc["effective_from"],
                 "effective_to": doc["effective_to"],
                 "status": doc["status"],
-                "title": doc["title"]
+                "title": doc["title"],
+                "source": source
             }
         })
         return chunks
@@ -233,7 +250,8 @@ def _chunk_faq_content(content: str, header: str, doc: Dict[str, Any], start_chu
                     "effective_from": doc["effective_from"],
                     "effective_to": doc["effective_to"],
                     "status": doc["status"],
-                    "title": doc["title"]
+                    "title": doc["title"],
+                    "source": source
                 }
             })
             chunk_index += 1
@@ -247,6 +265,7 @@ def _chunk_by_h2_sections(content: str, header: str, doc: Dict[str, Any], start_
     """
     chunks = []
     chunk_index = start_chunk_index
+    source = _resolve_source(doc)
     
     # Encontra todas as seções H2
     h2_pattern = r'^##\s+.+$'
@@ -267,7 +286,8 @@ def _chunk_by_h2_sections(content: str, header: str, doc: Dict[str, Any], start_
                 "effective_from": doc["effective_from"],
                 "effective_to": doc["effective_to"],
                 "status": doc["status"],
-                "title": doc["title"]
+                "title": doc["title"],
+                "source": source
             }
         })
         return chunks
@@ -297,7 +317,8 @@ def _chunk_by_h2_sections(content: str, header: str, doc: Dict[str, Any], start_
                     "effective_from": doc["effective_from"],
                     "effective_to": doc["effective_to"],
                     "status": doc["status"],
-                    "title": doc["title"]
+                    "title": doc["title"],
+                    "source": source
                 }
             })
             chunk_index += 1
