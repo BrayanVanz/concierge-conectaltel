@@ -57,3 +57,9 @@ variable "opensearch_extra_principals" {
   default     = []
   description = "Extra IAM principal ARNs (users/roles) granted read/write access to the OpenSearch Serverless collection and index, in addition to the Lambda execution role. Useful for developers running the indexing script manually from their own AWS session."
 }
+
+variable "audit_bucket_name" {
+  description = "Nome customizado para o bucket S3 de logs de auditoria"
+  type        = string
+  default     = ""
+}
