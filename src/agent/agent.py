@@ -6,6 +6,7 @@ from opensearchpy import OpenSearch, RequestsHttpConnection
 from requests_aws4auth import AWS4Auth
 
 from src.audit.audit_log import log_trace
+from src.agent.escalation_policy import EscalationPolicy
 
 class ConciergeAgent:
     def __init__(
@@ -65,6 +66,8 @@ class ConciergeAgent:
             )
         else:
             self.opensearch = None
+
+        self.escalation_policy = EscalationPolicy()
 
     def _generate_query_embedding(self, query_text: str) -> list[float]:
         """Gera o embedding da pergunta usando o Cohere Embed v4 no Bedrock."""
@@ -144,21 +147,32 @@ class ConciergeAgent:
         conversation_history = conversation_history or []
         guardrail_blocked_msg = "Como assistente da ConectaTel, só posso responder a dúvidas sobre nossos planos, faturas e serviços oficiais."
 
-        # 1. Triagem e Regra de Escalonamento Humano
-        if any(k in query.lower() for k in ["contestação", "fatura indevida", "cancelamento"]):
+        # 1. Triagem de Escalonamento Humano — baseada em dados reais de
+        #    atendimento (src/pipeline.ipynb -> politica_escalonamento.json),
+        #    com casos críticos raros tratados à parte (ver escalation_policy.py).
+        escalation = self.escalation_policy.match(query)
+        if escalation and escalation.escalar:
             handoff = {
                 "user_id": user_id,
-                "categoria": "Financeiro/Retenção",
-                "urgencia": "Alta",
+                "categoria": escalation.rotulo_original,
+                "urgencia": "Alta" if escalation.origem == "caso_critico" or (escalation.taxa_encaminhamento_pct or 0) >= 75 else "Média",
                 "problema_relatado": query,
-                "verificacoes_bot": conversation_history
+                "verificacoes_bot": conversation_history,
+                "evidencia_dados": {
+                    "origem_da_decisao": escalation.origem,
+                    "subcategoria": escalation.subcategoria,
+                    "taxa_encaminhamento_historica_pct": escalation.taxa_encaminhamento_pct,
+                    "satisfacao_media_historica": escalation.satisfacao_media,
+                    "chamados_analisados": escalation.chamados,
+                    "fonte": "src/pipeline.ipynb -> data/processed/log_chamados/politica_escalonamento.json",
+                },
             }
             resp = "Entendo a situação. Estou encaminhando seu caso para um atendente humano especializado."
             trace_id = log_trace(
                 pergunta=query,
                 user_id=user_id,
                 decisao="ESCALATED",
-                guardrail_acionado="regra_de_escalonamento",
+                guardrail_acionado=f"escalonamento:{escalation.origem}:{escalation.subcategoria}",
                 chunk_strategy=self.chunk_strategy,
                 resposta=resp,
                 extra={"handoff": handoff},
