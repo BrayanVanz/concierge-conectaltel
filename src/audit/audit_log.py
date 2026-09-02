@@ -33,7 +33,9 @@ Consulta durante a banca (via CLI, ver src/audit/lookup_cli.py):
 from __future__ import annotations
 
 import json
+import logging
 import os
+import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -44,11 +46,41 @@ from typing import Any, Optional
 # ou para um caminho dentro do bucket S3 sincronizado localmente.
 DEFAULT_LOG_PATH = Path(__file__).resolve().parents[2] / "data" / "audit" / "audit_log.jsonl"
 
+logger = logging.getLogger("audit_log")
+
 
 def _log_path() -> Path:
     path = Path(os.getenv("AUDIT_LOG_PATH", str(DEFAULT_LOG_PATH)))
     path.parent.mkdir(parents=True, exist_ok=True)
     return path
+
+
+def _sync_to_s3(path: Path) -> None:
+    """Sobe uma cópia do audit_log.jsonl pro bucket de auditoria
+    (terraform/audit.tf), se AUDIT_BUCKET_NAME estiver configurado.
+
+    Best-effort: nunca lança exceção. A trilha de auditoria continua 100%
+    local e consultável (lookup_cli.py / get_trace) mesmo se isso falhar —
+    ver justificativa em audit.tf.
+    """
+    bucket = os.getenv("AUDIT_BUCKET_NAME")
+    if not bucket:
+        return  # sync desligado se a env var não estiver setada
+
+    try:
+        import boto3  # import local: quem não usa sync não precisa ter boto3 instalado
+
+        boto3.client("s3").upload_file(str(path), bucket, path.name)
+    except Exception as exc:  # noqa: BLE001 - nunca deve derrubar o log local
+        logger.warning(
+            "Falha ao sincronizar audit_log.jsonl com o S3 (log local não foi afetado): %s",
+            exc,
+        )
+
+
+def _sync_to_s3_async(path: Path) -> None:
+    """Dispara o sync com o S3 em background, sem bloquear a resposta do agente."""
+    threading.Thread(target=_sync_to_s3, args=(path,), daemon=True).start()
 
 
 def generate_trace_id() -> str:
@@ -99,6 +131,8 @@ def log_trace(
 
     with _log_path().open("a", encoding="utf-8") as f:
         f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    _sync_to_s3_async(_log_path())
 
     return trace_id
 
