@@ -1,0 +1,250 @@
+{
+  "gerado_em": "2026-09-02T14:49:04.063756+00:00",
+  "fonte_dados": "data/raw/log_chamados/log_chamados_sintetico.csv",
+  "limiar_taxa_encaminhamento_pct": 50.0,
+  "subcategorias": {
+    "adição de pacote de dados": {
+      "rotulo_original": "Adição de pacote de dados",
+      "chamados": 8,
+      "satisfacao_media": 3.33,
+      "taxa_insatisfacao_pct": 33.33,
+      "taxa_resolucao_pct": 62.5,
+      "taxa_encaminhamento_pct": 25.0,
+      "escalar_por_padrao": false
+    },
+    "aparelho não conecta": {
+      "rotulo_original": "Aparelho não conecta",
+      "chamados": 10,
+      "satisfacao_media": 3.2,
+      "taxa_insatisfacao_pct": 20.0,
+      "taxa_resolucao_pct": 60.0,
+      "taxa_encaminhamento_pct": 20.0,
+      "escalar_por_padrao": false
+    },
+    "cancelamento de complemento": {
+      "rotulo_original": "Cancelamento de complemento",
+      "chamados": 11,
+      "satisfacao_media": 3.55,
+      "taxa_insatisfacao_pct": 27.27,
+      "taxa_resolucao_pct": 72.73,
+      "taxa_encaminhamento_pct": 27.27,
+      "escalar_por_padrao": false
+    },
+    "cancelamento de linha": {
+      "rotulo_original": "Cancelamento de linha",
+      "chamados": 22,
+      "satisfacao_media": 3.1,
+      "taxa_insatisfacao_pct": 33.33,
+      "taxa_resolucao_pct": 59.09,
+      "taxa_encaminhamento_pct": 36.36,
+      "escalar_por_padrao": false
+    },
+    "cancelamento por insatisfação": {
+      "rotulo_original": "Cancelamento por insatisfação",
+      "chamados": 11,
+      "satisfacao_media": 4.62,
+      "taxa_insatisfacao_pct": 0.0,
+      "taxa_resolucao_pct": 90.91,
+      "taxa_encaminhamento_pct": 0.0,
+      "escalar_por_padrao": false
+    },
+    "cancelamento por mudança de operadora": {
+      "rotulo_original": "Cancelamento por mudança de operadora",
+      "chamados": 11,
+      "satisfacao_media": 3.27,
+      "taxa_insatisfacao_pct": 45.45,
+      "taxa_resolucao_pct": 54.55,
+      "taxa_encaminhamento_pct": 45.45,
+      "escalar_por_padrao": false
+    },
+    "chip não funciona": {
+      "rotulo_original": "Chip não funciona",
+      "chamados": 10,
+      "satisfacao_media": 3.38,
+      "taxa_insatisfacao_pct": 37.5,
+      "taxa_resolucao_pct": 60.0,
+      "taxa_encaminhamento_pct": 20.0,
+      "escalar_por_padrao": false
+    },
+    "cobrança indevida": {
+      "rotulo_original": "Cobrança indevida",
+      "chamados": 12,
+      "satisfacao_media": 3.7,
+      "taxa_insatisfacao_pct": 20.0,
+      "taxa_resolucao_pct": 66.67,
+      "taxa_encaminhamento_pct": 25.0,
+      "escalar_por_padrao": false
+    },
+    "contestação de valor": {
+      "rotulo_original": "Contestação de valor",
+      "chamados": 10,
+      "satisfacao_media": 4.29,
+      "taxa_insatisfacao_pct": 14.29,
+      "taxa_resolucao_pct": 80.0,
+      "taxa_encaminhamento_pct": 0.0,
+      "escalar_por_padrao": false
+    },
+    "dúvida geral": {
+      "rotulo_original": "Dúvida geral",
+      "chamados": 8,
+      "satisfacao_media": 3.8,
+      "taxa_insatisfacao_pct": 20.0,
+      "taxa_resolucao_pct": 62.5,
+      "taxa_encaminhamento_pct": 25.0,
+      "escalar_por_padrao": false
+    },
+    "dúvida sobre desconto": {
+      "rotulo_original": "Dúvida sobre desconto",
+      "chamados": 13,
+      "satisfacao_media": 3.5,
+      "taxa_insatisfacao_pct": 30.0,
+      "taxa_resolucao_pct": 61.54,
+      "taxa_encaminhamento_pct": 30.77,
+      "escalar_por_padrao": false
+    },
+    "dúvida sobre franquia": {
+      "rotulo_original": "Dúvida sobre franquia",
+      "chamados": 16,
+      "satisfacao_media": 3.0,
+      "taxa_insatisfacao_pct": 36.36,
+      "taxa_resolucao_pct": 68.75,
+      "taxa_encaminhamento_pct": 25.0,
+      "escalar_por_padrao": false
+    },
+    "dúvida sobre prazo de portabilidade": {
+      "rotulo_original": "Dúvida sobre prazo de portabilidade",
+      "chamados": 19,
+      "satisfacao_media": 3.23,
+      "taxa_insatisfacao_pct": 23.08,
+      "taxa_resolucao_pct": 68.42,
+      "taxa_encaminhamento_pct": 26.32,
+      "escalar_por_padrao": false
+    },
+    "elogio": {
+      "rotulo_original": "Elogio",
+      "chamados": 13,
+      "satisfacao_media": 3.18,
+      "taxa_insatisfacao_pct": 36.36,
+      "taxa_resolucao_pct": 69.23,
+      "taxa_encaminhamento_pct": 23.08,
+      "escalar_por_padrao": false
+    },
+    "erro de configuração de apn": {
+      "rotulo_original": "Erro de configuração de APN",
+      "chamados": 9,
+      "satisfacao_media": 3.56,
+      "taxa_insatisfacao_pct": 22.22,
+      "taxa_resolucao_pct": 66.67,
+      "taxa_encaminhamento_pct": 33.33,
+      "escalar_por_padrao": false
+    },
+    "falha na instalação": {
+      "rotulo_original": "Falha na instalação",
+      "chamados": 14,
+      "satisfacao_media": 3.36,
+      "taxa_insatisfacao_pct": 27.27,
+      "taxa_resolucao_pct": 50.0,
+      "taxa_encaminhamento_pct": 50.0,
+      "escalar_por_padrao": true
+    },
+    "lentidão na internet": {
+      "rotulo_original": "Lentidão na internet",
+      "chamados": 10,
+      "satisfacao_media": 3.56,
+      "taxa_insatisfacao_pct": 22.22,
+      "taxa_resolucao_pct": 60.0,
+      "taxa_encaminhamento_pct": 30.0,
+      "escalar_por_padrao": false
+    },
+    "portabilidade não concluída": {
+      "rotulo_original": "Portabilidade não concluída",
+      "chamados": 17,
+      "satisfacao_media": 3.19,
+      "taxa_insatisfacao_pct": 31.25,
+      "taxa_resolucao_pct": 58.82,
+      "taxa_encaminhamento_pct": 35.29,
+      "escalar_por_padrao": false
+    },
+    "segunda via": {
+      "rotulo_original": "Segunda via",
+      "chamados": 10,
+      "satisfacao_media": 3.78,
+      "taxa_insatisfacao_pct": 11.11,
+      "taxa_resolucao_pct": 80.0,
+      "taxa_encaminhamento_pct": 10.0,
+      "escalar_por_padrao": false
+    },
+    "sem sinal": {
+      "rotulo_original": "Sem sinal",
+      "chamados": 6,
+      "satisfacao_media": 3.0,
+      "taxa_insatisfacao_pct": 50.0,
+      "taxa_resolucao_pct": 33.33,
+      "taxa_encaminhamento_pct": 66.67,
+      "escalar_por_padrao": true
+    },
+    "sinal instável": {
+      "rotulo_original": "Sinal instável",
+      "chamados": 11,
+      "satisfacao_media": 2.62,
+      "taxa_insatisfacao_pct": 50.0,
+      "taxa_resolucao_pct": 36.36,
+      "taxa_encaminhamento_pct": 63.64,
+      "escalar_por_padrao": true
+    },
+    "solicitação de fatura detalhada": {
+      "rotulo_original": "Solicitação de fatura detalhada",
+      "chamados": 16,
+      "satisfacao_media": 4.21,
+      "taxa_insatisfacao_pct": 7.14,
+      "taxa_resolucao_pct": 81.25,
+      "taxa_encaminhamento_pct": 18.75,
+      "escalar_por_padrao": false
+    },
+    "status de portabilidade": {
+      "rotulo_original": "Status de portabilidade",
+      "chamados": 16,
+      "satisfacao_media": 3.87,
+      "taxa_insatisfacao_pct": 20.0,
+      "taxa_resolucao_pct": 81.25,
+      "taxa_encaminhamento_pct": 18.75,
+      "escalar_por_padrao": false
+    },
+    "sugestão": {
+      "rotulo_original": "Sugestão",
+      "chamados": 14,
+      "satisfacao_media": 3.25,
+      "taxa_insatisfacao_pct": 25.0,
+      "taxa_resolucao_pct": 64.29,
+      "taxa_encaminhamento_pct": 21.43,
+      "escalar_por_padrao": false
+    },
+    "troca de plano": {
+      "rotulo_original": "Troca de plano",
+      "chamados": 9,
+      "satisfacao_media": 3.17,
+      "taxa_insatisfacao_pct": 33.33,
+      "taxa_resolucao_pct": 66.67,
+      "taxa_encaminhamento_pct": 22.22,
+      "escalar_por_padrao": false
+    },
+    "valor divergente": {
+      "rotulo_original": "Valor divergente",
+      "chamados": 5,
+      "satisfacao_media": 3.33,
+      "taxa_insatisfacao_pct": 33.33,
+      "taxa_resolucao_pct": 80.0,
+      "taxa_encaminhamento_pct": 20.0,
+      "escalar_por_padrao": false
+    },
+    "área sem cobertura 4g/5g": {
+      "rotulo_original": "Área sem cobertura 4G/5G",
+      "chamados": 9,
+      "satisfacao_media": 4.0,
+      "taxa_insatisfacao_pct": 16.67,
+      "taxa_resolucao_pct": 66.67,
+      "taxa_encaminhamento_pct": 22.22,
+      "escalar_por_padrao": false
+    }
+  }
+}
