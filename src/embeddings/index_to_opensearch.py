@@ -26,11 +26,11 @@ def _iter_embedded_files(input_path: str) -> List[str]:
 def _derive_index_name(base_index: str, file_path: str) -> str:
     """
     Deriva o nome do índice com base na estratégia no nome do arquivo.
-    Exemplo: chunks_fixed_windows_embedded.jsonl -> concierge-vectors-fixed-windows
+    Exemplo: chunks_fixed_window_embedded.jsonl -> concierge-vectors-fixed-windows
     """
     file_name = Path(file_path).name.lower()
 
-    if "fixed_windows" in file_name:
+    if "fixed_window" in file_name:
         strategy = "fixed-windows"
     elif "full_document" in file_name:
         strategy = "full-document"

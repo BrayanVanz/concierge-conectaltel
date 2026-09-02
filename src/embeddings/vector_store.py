@@ -60,35 +60,63 @@ class OpenSearchVectorStore:
         try:
             if not self.client.indices.exists(index=self.index_name):
                 index_body = {
-                "settings": {
-                    "index.knn": True
-                },
-                "mappings": {
-                    "properties": {
-                        "embedding": {
-                            "type": "knn_vector",
-                            "dimension": dimension,
-                            "method": {
-                                "name": "hnsw",
-                                "space_type": "cosinesimil",
-                                "engine": "nmslib",
-                                "parameters": {
-                                    "ef_construction": 128,
-                                    "m": 16
+                    "settings": {
+                        "index.knn": True
+                    },
+                    "mappings": {
+                        "properties": {
+                            "embedding": {
+                                "type": "knn_vector",
+                                "dimension": dimension,
+                                "method": {
+                                    "name": "hnsw",
+                                    "space_type": "cosinesimil",
+                                    "engine": "nmslib",
+                                    "parameters": {
+                                        "ef_construction": 128,
+                                        "m": 16
+                                    }
                                 }
-                            }
-                        },
-                        "status": {"type": "keyword"},
-                        "doc_family_id": {"type": "keyword"},
-                        "content": {"type": "text"},
-                        "source": {"type": "keyword"}
+                            },
+                            # Campos de nível raiz — precisam bater com o que
+                            # bulk_index() efetivamente grava (ver _flatten_for_index)
+                            # e com o que src/agent/agent.py lê de hit['_source'].
+                            "status": {"type": "keyword"},
+                            "doc_family_id": {"type": "keyword"},
+                            "content": {"type": "text"},
+                            "text_content": {"type": "text"},
+                            "source": {"type": "keyword"}
+                        }
                     }
                 }
-            }
                 self.client.indices.create(index=self.index_name, body=index_body)
                 logger.info("Índice criado com sucesso | index=%s | dimension=%d", self.index_name, dimension)
         except Exception as e:
             raise OpenSearchVectorStoreError(f"Erro ao criar/verificar o índice {self.index_name}: {e}")
+
+    @staticmethod
+    def _flatten_for_index(doc: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Garante que os campos usados em busca/filtragem (source, doc_family_id,
+        status, content) existam no NÍVEL RAIZ do documento antes de indexar.
+
+        Os chunks chegam aqui com esses campos dentro de "metadata" (gerados
+        por src/chunking/chunk_strategies.py) e o texto em "text_content".
+        O mapping do índice e src/agent/agent.py (retrieve_vigente_chunks)
+        leem source/doc_family_id/status/content diretamente de hit['_source'],
+        no nível raiz — por isso, sem este achatamento, esses campos ficavam
+        sempre ausentes/None nas buscas, mesmo depois do source ser
+        propagado corretamente pelo chunking.
+        """
+        flattened = dict(doc)
+        metadata = doc.get("metadata", {}) or {}
+
+        flattened.setdefault("source", metadata.get("source"))
+        flattened.setdefault("doc_family_id", metadata.get("doc_family_id"))
+        flattened.setdefault("status", metadata.get("status"))
+        flattened.setdefault("content", doc.get("text_content"))
+
+        return flattened
 
     def bulk_index(self, docs: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Indexa uma lista de documentos no OpenSearch utilizando a API de Bulk."""
@@ -97,8 +125,9 @@ class OpenSearchVectorStore:
 
         bulk_data = []
         for doc in docs:
+            indexed_doc = self._flatten_for_index(doc)
             bulk_data.append(json.dumps({"index": {"_index": self.index_name}}))
-            bulk_data.append(json.dumps(doc, ensure_ascii=False))
+            bulk_data.append(json.dumps(indexed_doc, ensure_ascii=False))
 
         body = "\n".join(bulk_data) + "\n"
 

@@ -52,6 +52,7 @@ if ($GUARDRAIL_ID) {
     Write-Host "Bedrock Guardrail ID obtido: $env:BEDROCK_GUARDRAIL_ID (v$env:BEDROCK_GUARDRAIL_VERSION)" -ForegroundColor Green
 }
 
+
 if ($AUDIT_BUCKET) {
     $env:AUDIT_BUCKET_NAME = $AUDIT_BUCKET
     Write-Host "Audit Bucket obtido: $env:AUDIT_BUCKET_NAME (sync automático da trilha de auditoria habilitado)" -ForegroundColor Green
