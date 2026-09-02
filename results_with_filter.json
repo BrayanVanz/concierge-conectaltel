@@ -1,0 +1,366 @@
+{
+  "total_queries": 15,
+  "version_accuracy_by_k": {
+    "@1": "1.0000",
+    "@3": "1.0000",
+    "@5": "1.0000"
+  },
+  "revoked_contamination_by_k": {
+    "@1": "0.0000",
+    "@3": "0.0000",
+    "@5": "0.0000"
+  },
+  "version_ranks": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "individual_results": [
+    {
+      "query": "Quantos dias tenho para contestar um valor cobrado na minha fatura?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_contestacao"
+    },
+    {
+      "query": "Como funciona o reembolso se a minha contestação de fatura for aceita?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "forma_reembolso"
+    },
+    {
+      "query": "A partir de qual valor a contestação de fatura passa por verificação antifraude?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "antifraude"
+    },
+    {
+      "query": "Em quantos dias úteis a equipe de faturamento analisa uma contestação?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_analise"
+    },
+    {
+      "query": "Posso receber o reembolso da minha fatura direto na minha conta corrente?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "forma_reembolso"
+    },
+    {
+      "query": "Qual é o prazo atual para contestar valores na fatura?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_contestacao"
+    },
+    {
+      "query": "A contestação de fatura de 500 reais exige verificação antifraude?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "antifraude"
+    },
+    {
+      "query": "Quanto tempo demora a análise de contestação com verificação antifraude?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_analise"
+    },
+    {
+      "query": "Posso escolher entre crédito na fatura ou depósito em conta?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "forma_reembolso"
+    },
+    {
+      "query": "Como faço para contestar um valor na minha fatura?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "geral"
+    },
+    {
+      "query": "Quais são as formas de reembolso disponíveis?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "forma_reembolso"
+    },
+    {
+      "query": "O que acontece se eu contestar um valor acima de 500 reais?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "antifraude"
+    },
+    {
+      "query": "Preciso informar dados bancários para receber reembolso?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "forma_reembolso"
+    },
+    {
+      "query": "Qual é o prazo máximo para análise de contestação sem antifraude?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_analise"
+    },
+    {
+      "query": "A verificação antifraude aumenta o prazo de análise da contestação?",
+      "expected_version": 2,
+      "retrieved_versions": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "version_found": {
+        "1": true,
+        "3": true,
+        "5": true
+      },
+      "version_rank": 1,
+      "revoked_found": {
+        "1": false,
+        "3": false,
+        "5": false
+      },
+      "category": "prazo_analise"
+    }
+  ],
+  "filter_mode": "WITH_VERSION_FILTER"
+}

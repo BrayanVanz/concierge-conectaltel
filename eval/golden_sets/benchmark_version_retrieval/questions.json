@@ -1,0 +1,92 @@
+[
+  {
+    "query": "Quantos dias tenho para contestar um valor cobrado na minha fatura?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_contestacao"
+  },
+  {
+    "query": "Como funciona o reembolso se a minha contestação de fatura for aceita?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "forma_reembolso"
+  },
+  {
+    "query": "A partir de qual valor a contestação de fatura passa por verificação antifraude?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "antifraude"
+  },
+  {
+    "query": "Em quantos dias úteis a equipe de faturamento analisa uma contestação?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_analise"
+  },
+  {
+    "query": "Posso receber o reembolso da minha fatura direto na minha conta corrente?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "forma_reembolso"
+  },
+  {
+    "query": "Qual é o prazo atual para contestar valores na fatura?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_contestacao"
+  },
+  {
+    "query": "A contestação de fatura de 500 reais exige verificação antifraude?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "antifraude"
+  },
+  {
+    "query": "Quanto tempo demora a análise de contestação com verificação antifraude?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_analise"
+  },
+  {
+    "query": "Posso escolher entre crédito na fatura ou depósito em conta?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "forma_reembolso"
+  },
+  {
+    "query": "Como faço para contestar um valor na minha fatura?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "geral"
+  },
+  {
+    "query": "Quais são as formas de reembolso disponíveis?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "forma_reembolso"
+  },
+  {
+    "query": "O que acontece se eu contestar um valor acima de 500 reais?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "antifraude"
+  },
+  {
+    "query": "Preciso informar dados bancários para receber reembolso?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "forma_reembolso"
+  },
+  {
+    "query": "Qual é o prazo máximo para análise de contestação sem antifraude?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_analise"
+  },
+  {
+    "query": "A verificação antifraude aumenta o prazo de análise da contestação?",
+    "expected_doc_family_id": "pol-reembolso",
+    "expected_version": 2,
+    "category": "prazo_analise"
+  }
+]
