@@ -30,6 +30,8 @@ if (-not $OPENSEARCH_ENDPOINT) {
 $GUARDRAIL_ID = (terraform output -raw bedrock_guardrail_id 2>$null)
 $GUARDRAIL_VERSION = (terraform output -raw bedrock_guardrail_version 2>$null)
 
+$AUDIT_BUCKET = (terraform output -raw audit_bucket_name 2>$null)
+
 # Retorna para a raiz do projeto (um nível acima da pasta scripts)
 Set-Location -Path "$PSScriptRoot\.."
 
@@ -48,6 +50,14 @@ if ($GUARDRAIL_ID) {
     $env:BEDROCK_GUARDRAIL_ID = $GUARDRAIL_ID
     $env:BEDROCK_GUARDRAIL_VERSION = if ($GUARDRAIL_VERSION) { $GUARDRAIL_VERSION } else { "1" }
     Write-Host "Bedrock Guardrail ID obtido: $env:BEDROCK_GUARDRAIL_ID (v$env:BEDROCK_GUARDRAIL_VERSION)" -ForegroundColor Green
+}
+
+
+if ($AUDIT_BUCKET) {
+    $env:AUDIT_BUCKET_NAME = $AUDIT_BUCKET
+    Write-Host "Audit Bucket obtido: $env:AUDIT_BUCKET_NAME (sync automático da trilha de auditoria habilitado)" -ForegroundColor Green
+} else {
+    Write-Host "Aviso: audit_bucket_name não encontrado nas saídas do Terraform. A trilha de auditoria continuará funcionando 100% local, só sem backup automático no S3." -ForegroundColor Yellow
 }
 
 # 2. Configurar Ambiente Python e Dependências
